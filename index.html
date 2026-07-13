@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeuPersonal: encontre o personal trainer ideal perto de você</title>
+  <meta name="description" content="Encontre personal trainers verificados no mapa, escolha um horário livre de verdade e pague com segurança. Aula marcada em minutos." />
+  <meta property="og:title" content="MeuPersonal" />
+  <meta property="og:description" content="Personal trainers verificados perto de você. Escolha o horário, pague e treine." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <span class="logo">Meu<strong>Personal</strong></span>
+      <a class="botao botao-borda" href="#lista-de-espera">Entrar na lista</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="selo">Em breve para Android e iOS</p>
+        <h1>O personal trainer certo, <span class="destaque">perto de você</span></h1>
+        <p class="hero-sub">
+          Veja profissionais verificados no mapa, compare preço e avaliações,
+          escolha um horário livre de verdade e pague direto pelo app.
+          Sem troca de mensagens, sem incerteza.
+        </p>
+
+        <form id="form-espera" class="form-espera" aria-describedby="mensagem-espera" novalidate>
+          <label class="sr-only" for="campo-email">Seu e-mail</label>
+          <input id="campo-email" name="email" type="email" required
+                 placeholder="Seu melhor e-mail" autocomplete="email" />
+          <label class="sr-only" for="campo-perfil">Quero usar como</label>
+          <select id="campo-perfil" name="role_interest" aria-label="Quero usar como">
+            <option value="student">Sou aluno</option>
+            <option value="trainer">Sou personal</option>
+          </select>
+          <input type="text" name="site" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button class="botao botao-cheio" type="submit">Avise-me no lançamento</button>
+        </form>
+        <p id="mensagem-espera" class="mensagem" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="secao" id="como-funciona">
+      <div class="container">
+        <h2>Como funciona</h2>
+        <div class="passos">
+          <article class="passo">
+            <span class="passo-numero" aria-hidden="true">1</span>
+            <h3>Encontre no mapa</h3>
+            <p>Personais próximos aparecem no mapa com preço, especialidades e avaliações reais de outros alunos.</p>
+          </article>
+          <article class="passo">
+            <span class="passo-numero" aria-hidden="true">2</span>
+            <h3>Escolha o horário</h3>
+            <p>A agenda mostra só horários realmente livres. Escolheu, reservou: ninguém marca por cima.</p>
+          </article>
+          <article class="passo">
+            <span class="passo-numero" aria-hidden="true">3</span>
+            <h3>Pague e treine</h3>
+            <p>Pagamento seguro pelo app via Pix. A aula só é confirmada com o pagamento aprovado.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-personal" id="para-personais">
+      <div class="container">
+        <h2>É personal trainer? <span class="destaque">Receba alunos novos toda semana</span></h2>
+        <ul class="beneficios">
+          <li><strong>Perfil verificado</strong> valida sua documentação e passa confiança para quem contrata.</li>
+          <li><strong>Agenda sua, regras suas:</strong> você define horários, região de atendimento e o preço da aula.</li>
+          <li><strong>Receba toda semana</strong> na sua conta ou chave Pix, com extrato claro do que está liberado.</li>
+          <li><strong>Zero negociação por mensagem:</strong> o aluno chega com horário escolhido e aula paga.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="secao" id="confianca">
+      <div class="container">
+        <h2>Segurança em primeiro lugar</h2>
+        <div class="passos">
+          <article class="passo">
+            <h3>Profissionais verificados</h3>
+            <p>Todo personal passa por validação de documentos antes de aparecer no mapa.</p>
+          </article>
+          <article class="passo">
+            <h3>Pagamento protegido</h3>
+            <p>O valor só é repassado ao profissional depois da aula. Falhou o pagamento, o horário libera de volta.</p>
+          </article>
+          <article class="passo">
+            <h3>Seus dados, protegidos</h3>
+            <p>Dados pessoais tratados conforme a LGPD, com acesso restrito e criptografia.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-cta" id="lista-de-espera">
+      <div class="container">
+        <h2>Seja avisado no lançamento</h2>
+        <p>Deixe seu e-mail e ganhe acesso antecipado ao MeuPersonal.</p>
+        <a class="botao botao-cheio" href="#form-espera"
+           onclick="document.getElementById('campo-email').focus()">Quero entrar na lista</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-conteudo">
+      <span class="logo">Meu<strong>Personal</strong></span>
+      <p>© 2026 MeuPersonal · Um produto Inovassie · <a href="mailto:suporte@inovassie.com">suporte@inovassie.com</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
