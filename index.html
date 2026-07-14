@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#06100c" />
   <title>MeuPersonal | Encontre o personal certo perto de você</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>" />
+  <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -73,9 +74,18 @@
           </div>
 
           <div class="trust-strip" aria-label="Diferenciais da plataforma">
-            <img class="selo" src="imagens/selo-verificados.png" alt="Profissionais verificados: documentação validada" loading="lazy" />
-            <img class="selo" src="imagens/selo-horarios.png" alt="Horários reais: agenda em tempo real" loading="lazy" />
-            <img class="selo" src="imagens/selo-pagamento.png" alt="Pagamento seguro: protegido pela plataforma" loading="lazy" />
+            <article class="trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-2.8 8.1-7 10-4.2-1.9-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/></svg>
+              <div><strong>Profissionais verificados</strong><span>Documentação validada</span></div>
+            </article>
+            <article class="trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M9 14h2M13 14h2"/></svg>
+              <div><strong>Horários reais</strong><span>Agenda em tempo real</span></div>
+            </article>
+            <article class="trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3M12 14v2"/></svg>
+              <div><strong>Pagamento seguro</strong><span>Protegido pela plataforma</span></div>
+            </article>
           </div>
         </div>
 
@@ -83,9 +93,33 @@
           <div class="visual-orbit orbit-one"></div>
           <div class="visual-orbit orbit-two"></div>
           <div class="phone-wrap" id="phone-tilt">
-            <img class="celular-app" src="imagens/celular-app.png" alt="Aplicativo MeuPersonal mostrando personais próximos no mapa" />
+            <img class="celular-app" src="imagens/celular-app.webp" alt="Aplicativo MeuPersonal mostrando personais próximos no mapa" width="745" height="1344" fetchpriority="high" />
           </div>
-          <img class="booking-panel-img floating-card" src="imagens/painel-horario.png" alt="Painel de escolha de horário com pagamento via Pix" />
+          <aside class="booking-panel floating-card">
+            <div class="panel-heading">
+              <span>‹</span>
+              <strong>Escolha o horário</strong>
+              <span>›</span>
+            </div>
+            <div class="week-row">
+              <button><span>Seg</span><strong>26</strong></button>
+              <button><span>Ter</span><strong>27</strong></button>
+              <button class="selected"><span>Qua</span><strong>28</strong></button>
+              <button><span>Qui</span><strong>29</strong></button>
+              <button><span>Sex</span><strong>30</strong></button>
+              <button><span>Sáb</span><strong>31</strong></button>
+            </div>
+            <span class="panel-label">Horários disponíveis</span>
+            <div class="time-grid">
+              <button>06:00</button><button>07:00</button>
+              <button>08:00</button><button class="selected">09:00</button>
+              <button>10:00</button><button>11:00</button>
+            </div>
+            <div class="payment-box">
+              <div><small>Pagamento seguro</small><strong>R$ 120,00</strong><span>via Pix na plataforma</span></div>
+              <button class="btn btn-primary btn-block">Confirmar e pagar →</button>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -303,7 +337,7 @@
     <section class="cta-section" id="cta-final">
       <div class="container">
         <div class="cta-card reveal">
-          <img class="athlete athlete-left" src="imagens/personagem-mulher.png" alt="" aria-hidden="true" loading="lazy" />
+          <img class="athlete athlete-left" src="imagens/personagem-mulher.webp" alt="" aria-hidden="true" loading="lazy" width="520" height="1159" />
           <div class="cta-content">
             <span>Comece hoje</span>
             <h2>Pronto para treinar melhor?<br><strong>Encontre seu personal agora</strong></h2>
@@ -313,7 +347,7 @@
               <a class="btn btn-outline magnetic" href="/login">Sou personal trainer →</a>
             </div>
           </div>
-          <img class="athlete athlete-right" src="imagens/personagem-homem.png" alt="" aria-hidden="true" loading="lazy" />
+          <img class="athlete athlete-right" src="imagens/personagem-homem.webp" alt="" aria-hidden="true" loading="lazy" width="520" height="1033" />
         </div>
       </div>
     </section>
