@@ -402,3 +402,6 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 @media (prefers-reduced-motion: reduce) {
   .granulado-arco, .anel { animation: none; }
 }
+
+/* fundo shader (WebGL) atrás de todo o conteúdo */
+#fundo-shader { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; display: block; pointer-events: none; }
