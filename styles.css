@@ -87,10 +87,7 @@ img, svg { display: block; max-width: 100%; }
 .trust-item span { color: var(--muted); font-size: .72rem; }
 
 .hero-visual { min-height: 610px; position: relative; display: flex; align-items: center; justify-content: center; perspective: 1200px; }
-.visual-orbit { position: absolute; border-radius: 50%; border: 1px solid rgba(185,255,57,.2); box-shadow: 0 0 50px rgba(185,255,57,.12), inset 0 0 30px rgba(185,255,57,.05); }
-.orbit-one { width: 430px; height: 130px; bottom: 88px; transform: rotate(-5deg); }
-.orbit-two { width: 520px; height: 240px; right: 8px; top: 160px; border-style: dashed; opacity: .55; }
-.phone-wrap { position: relative; width: 380px; transform: rotateY(-8deg) rotateZ(2deg); transform-style: preserve-3d; transition: transform .22s ease-out; z-index: 3; }.phone-wrap .celular-app { width: 100%; height: auto; filter: drop-shadow(0 34px 44px rgba(0,0,0,.55)); }
+.phone-wrap { position: relative; width: 330px; transform: rotateY(-8deg) rotateZ(2deg); transform-style: preserve-3d; transition: transform .22s ease-out; z-index: 3; }.phone-wrap .celular-app { width: 100%; height: auto; filter: drop-shadow(0 34px 44px rgba(0,0,0,.55)); }
 .phone-shadow { position: absolute; inset: auto 20px 0; height: 50px; background: rgba(0,0,0,.65); filter: blur(25px); }
 .phone { position: absolute; inset: 0; border-radius: 42px; padding: 11px; background: linear-gradient(145deg, #28322d, #050807 55%, #17211c); border: 1px solid rgba(255,255,255,.24); box-shadow: 0 36px 70px rgba(0,0,0,.66), inset 0 0 0 2px rgba(255,255,255,.04); }
 .phone::before { content: ""; position: absolute; top: 13px; left: 50%; transform: translateX(-50%); width: 92px; height: 22px; border-radius: 20px; background: #030504; z-index: 5; }
@@ -367,19 +364,6 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
   .phone-wrap .celular-app, .phone-wrap::after, .booking-panel { animation: none; }
 }
 
-/* granulado: textura de pontos em faixa curva girando devagar atrás do celular */
-.granulado-arco {
-  position: absolute; width: 880px; height: 880px; left: -220px; top: -60px;
-  border-radius: 50%; pointer-events: none; z-index: 0; opacity: .8;
-  background-image: radial-gradient(circle, rgba(185, 255, 57, .5) 1.4px, transparent 1.9px);
-  background-size: 17px 17px;
-  -webkit-mask-image: radial-gradient(circle at center, transparent 0 45%, rgba(0,0,0,.9) 56%, rgba(0,0,0,.55) 66%, transparent 74%);
-  mask-image: radial-gradient(circle at center, transparent 0 45%, rgba(0,0,0,.9) 56%, rgba(0,0,0,.55) 66%, transparent 74%);
-  animation: granulado-gira 70s linear infinite;
-  will-change: transform;
-}
-@keyframes granulado-gira { to { transform: rotate(360deg); } }
-
 /* anel de energia na base do celular (arco de trás + arco da frente) */
 .anel { position: absolute; left: -14%; width: 128%; bottom: -34px; height: auto; pointer-events: none; filter: drop-shadow(0 0 12px rgba(185,255,57,.75)); animation: anel-pulsa 4.2s ease-in-out infinite; }
 .anel-tras { z-index: -1; opacity: .55; }
@@ -389,11 +373,8 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
   50% { filter: drop-shadow(0 0 22px rgba(185,255,57,.95)); }
 }
 
-@media (max-width: 760px) {
-  .granulado-arco { width: 560px; height: 560px; left: -160px; }
-}
 @media (prefers-reduced-motion: reduce) {
-  .granulado-arco, .anel { animation: none; }
+  .anel { animation: none; }
 }
 
 /* fundo shader (WebGL) atrás de todo o conteúdo */
