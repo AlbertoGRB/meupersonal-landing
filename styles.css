@@ -171,12 +171,21 @@ img, svg { display: block; max-width: 100%; }
 .section-heading h2 { margin: 7px 0 6px; font-size: clamp(2rem, 3.2vw, 3rem); letter-spacing: -.04em; line-height: 1.12; }
 .section-heading h2 span { color: var(--lime); }
 .section-heading p { color: var(--muted); margin: 0; }
-.steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
-.step-card { position: relative; min-height: 320px; padding: 28px; border-radius: var(--radius); background: linear-gradient(145deg, rgba(15,32,23,.92), rgba(8,18,13,.92)); border: 1px solid rgba(255,255,255,.08); transition: transform .28s, border-color .28s, box-shadow .28s; }
+.steps-grid { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 16px; align-items: stretch; }
+.step-card { position: relative; padding: 26px 28px 30px; border-radius: var(--radius); background: linear-gradient(145deg, rgba(15,32,23,.92), rgba(8,18,13,.92)); border: 1px solid rgba(255,255,255,.08); transition: transform .28s, border-color .28s, box-shadow .28s; }
 .step-card:hover { transform: translateY(-8px); border-color: var(--line-strong); box-shadow: 0 26px 60px rgba(0,0,0,.28); }
-.step-number { position: absolute; top: 22px; left: 22px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--lime); color: #071006; font-weight: 900; }
-.step-icon { height: 120px; display: grid; place-items: center; }
-.step-icon svg { width: 88px; height: 88px; fill: none; stroke: var(--lime); stroke-width: 2; filter: drop-shadow(0 0 20px rgba(185,255,57,.12)); }
+.step-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px; }
+.step-number { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--lime); color: #071006; font-weight: 900; font-size: 1.05rem; flex: 0 0 auto; }
+.step-icon { display: grid; place-items: center; }
+.step-icon svg { width: 96px; height: 96px; filter: drop-shadow(0 10px 18px rgba(0,0,0,.45)); }
+.step-icon .traco-suave { fill: none; stroke: #7d8b83; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
+.step-icon .traco-lima { fill: none; stroke: var(--lime); stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+.step-icon .pino { fill: var(--lime); stroke: #0b130e; stroke-width: 1.6; }
+.step-icon .pino-furo { fill: #0b130e; }
+.step-icon .ponto-lima rect { fill: var(--lime); }
+.step-icon .cadeado { fill: var(--lime); }
+.step-icon .cadeado-furo { fill: #0b130e; }
+.step-arrow { align-self: center; color: var(--lime); font-size: 2.2rem; font-weight: 800; text-shadow: 0 0 16px rgba(185,255,57,.35); user-select: none; }
 .step-card h3 { margin: 12px 0 8px; font-size: 1.22rem; }.step-card p { color: var(--muted); margin: 0; }
 
 .section-panel::before { content: ""; position: absolute; inset: 32px 0; background: linear-gradient(180deg, rgba(10,23,16,.84), rgba(6,14,10,.88)); border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); z-index: -1; }
@@ -246,7 +255,7 @@ img, svg { display: block; max-width: 100%; }
   .header-actions .link-login { display: none; }.header-actions .btn { min-height: 40px; padding: 0 13px; font-size: .77rem; }
   .hero h1 { font-size: clamp(2.65rem, 13vw, 4.5rem); }.hero-description { font-size: .98rem; }.hero-actions { flex-direction: column; }.hero-actions .btn { width: 100%; }.trust-strip { grid-template-columns: 1fr; }
   .hero-visual { min-height: 560px; transform: scale(.9); margin-top: -18px; margin-bottom: -30px; }.phone-wrap { margin-left: -70px; }.booking-panel { right: -25px; top: 135px; }
-  .steps-grid { grid-template-columns: 1fr; }.step-card { min-height: 260px; }.step-icon { height: 100px; }
+  .steps-grid { grid-template-columns: 1fr; }.step-arrow { display: none; }
   .dashboard-mockup { min-height: 540px; padding: 18px; }.profile-summary { width: 100%; }.dashboard-stats { grid-template-columns: 1fr 1fr; }.dashboard-stats div:last-child { grid-column: 1 / -1; }.dashboard-calendar { width: 100%; }.payout-card { right: 16px; bottom: 25px; }
   .benefit-grid { grid-template-columns: 1fr; }.cta-card { min-height: 390px; padding: 46px 20px 150px; }.athlete { height: 150px; opacity: .85; }.athlete-left { left: 4px; }.athlete-right { right: 4px; }.cta-actions { flex-direction: column; }.cta-actions .btn { width: 100%; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }.footer-grid > div:first-child, .footer-grid > div:last-child { grid-column: 1 / -1; }.footer-grid > div:last-child { align-items: flex-start; }
