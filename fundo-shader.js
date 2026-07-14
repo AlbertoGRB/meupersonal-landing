@@ -350,6 +350,9 @@ void main() {
   let raf = 0;
   let visivel = document.visibilityState === 'visible';
   const inicio = performance.now();
+  let ultimoQuadro = null;
+  let alvoX = 0, alvoY = 0, alvoPresenca = 0;
+  let mouseX = 0, mouseY = 0, presenca = 0;
 
   const redimensionar = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -369,8 +372,16 @@ void main() {
     raf = 0;
     if (!visivel) return;
     redimensionar();
+    const dt = ultimoQuadro === null ? 0 : Math.min((agora - ultimoQuadro) / 1000, 0.1);
+    ultimoQuadro = agora;
+    const seguir = 1 - Math.exp(-12 * dt);
+    mouseX += (alvoX - mouseX) * seguir;
+    mouseY += (alvoY - mouseY) * seguir;
+    presenca += (alvoPresenca - presenca) * seguir;
     const tempo = reduceMotion ? 0 : ((agora - inicio) / 1000) * CONFIG.timeScale;
     gl.uniform4f(uni.scene, canvas.width, canvas.height, tempo, CONFIG.colorCount);
+    gl.uniform4f(uni.space, CONFIG.offsetX, CONFIG.offsetY, mouseX, mouseY);
+    gl.uniform4f(uni.cursor, presenca, 2.0, 0.65, 0.46);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     if (!reduceMotion) pedirQuadro();
   };
@@ -378,6 +389,17 @@ void main() {
   const pedirQuadro = () => {
     if (visivel && raf === 0) raf = requestAnimationFrame(desenhar);
   };
+
+  if (!reduceMotion) {
+    window.addEventListener('pointermove', (evento) => {
+      alvoX = (evento.clientX / window.innerWidth) * 2 - 1;
+      alvoY = 1 - (evento.clientY / window.innerHeight) * 2;
+      alvoPresenca = 1;
+      pedirQuadro();
+    }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', () => { alvoPresenca = 0; });
+    window.addEventListener('blur', () => { alvoPresenca = 0; });
+  }
 
   window.addEventListener('resize', () => { redimensionar(); pedirQuadro(); });
   document.addEventListener('visibilitychange', () => {

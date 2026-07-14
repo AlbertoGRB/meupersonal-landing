@@ -4,10 +4,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 body {
   margin: 0;
   min-width: 320px;
-  background:
-    radial-gradient(circle at 80% 8%, rgba(121, 194, 17, .09), transparent 28%),
-    radial-gradient(circle at 20% 70%, rgba(46, 116, 66, .07), transparent 26%),
-    var(--bg);
+  background: var(--bg-deep);
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.6;
@@ -73,10 +70,6 @@ img, svg { display: block; max-width: 100%; }
 .btn-icon { font-size: 1.1rem; }
 
 .hero { padding: 70px 0 94px; min-height: 760px; }
-.hero-grid-bg { position: absolute; inset: 0; opacity: .2; background-image: linear-gradient(rgba(181,255,58,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(181,255,58,.06) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(to bottom, transparent, black 15%, black 72%, transparent); }
-.hero-glow { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .18; pointer-events: none; }
-.glow-one { width: 460px; height: 460px; background: #81e600; right: 6%; top: 14%; }
-.glow-two { width: 280px; height: 280px; background: #159150; left: 3%; bottom: 8%; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(520px, .96fr); gap: 44px; align-items: center; position: relative; z-index: 1; }
 .hero-copy { padding: 26px 0; }
 .eyebrow, .section-kicker { color: var(--lime); text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; font-weight: 780; }
@@ -405,3 +398,11 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 
 /* fundo shader (WebGL) atrás de todo o conteúdo */
 #fundo-shader { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; display: block; pointer-events: none; }
+
+/* véu sutil sobre o shader para o texto nunca perder contraste */
+.veu-legibilidade {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(2,6,4,.62) 0%, rgba(2,6,4,.28) 42%, rgba(2,6,4,.14) 100%),
+    linear-gradient(180deg, rgba(2,6,4,.35) 0%, transparent 22%, transparent 72%, rgba(2,6,4,.5) 100%);
+}
