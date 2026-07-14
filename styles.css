@@ -340,3 +340,48 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 .pagina-legal p, .pagina-legal li { color: var(--muted); font-size: .96rem; }
 .pagina-legal ul { padding-left: 22px; }
 .pagina-legal a { color: var(--lime); }
+
+/* ====== vida ao redor do celular: partículas, flutuação e respiro do painel ====== */
+.particula {
+  position: absolute; border-radius: 50%;
+  background: var(--lime); box-shadow: 0 0 10px rgba(185,255,57,.65);
+  opacity: 0; pointer-events: none; z-index: 2;
+  animation: particula-sobe linear infinite;
+}
+@keyframes particula-sobe {
+  0% { transform: translateY(30px) translateX(0); opacity: 0; }
+  12% { opacity: .55; }
+  60% { opacity: .38; transform: translateY(-90px) translateX(8px); }
+  100% { transform: translateY(-190px) translateX(-6px); opacity: 0; }
+}
+
+/* celular levita (animação na imagem interna; o tilt do mouse fica no wrapper) */
+.phone-wrap .celular-app { animation: celular-flutua 6s ease-in-out infinite; }
+@keyframes celular-flutua {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+.phone-wrap::after {
+  content: ""; position: absolute; left: 14%; right: 14%; bottom: -26px; height: 34px;
+  border-radius: 50%; background: rgba(0,0,0,.55); filter: blur(18px); z-index: -1;
+  animation: sombra-flutua 6s ease-in-out infinite;
+}
+@keyframes sombra-flutua {
+  0%, 100% { transform: scaleX(1); opacity: .8; }
+  50% { transform: scaleX(.86); opacity: .5; }
+}
+
+/* painel de horário com mais respiro em relação ao celular */
+.hero-visual .phone-wrap { margin-right: 190px; }
+.booking-panel { right: -4px; top: 118px; }
+
+@media (max-width: 1279px) {
+  .hero-visual .phone-wrap { margin-right: 140px; }
+}
+@media (max-width: 760px) {
+  .hero-visual .phone-wrap { margin-right: 90px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .particula { display: none; }
+  .phone-wrap .celular-app, .phone-wrap::after, .booking-panel { animation: none; }
+}
