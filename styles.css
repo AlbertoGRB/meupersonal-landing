@@ -390,3 +390,33 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 /* logo da marca */
 .brand { align-items: center; gap: 9px; }
 .brand-logo { width: 34px; height: auto; filter: drop-shadow(0 0 10px rgba(185,255,57,.2)); }
+
+/* ====== iconografia profissional ====== */
+.icone-chevron { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.icone-seta { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.icone-check { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.icone-pix { width: 17px; height: 17px; fill: #32bcad; flex: 0 0 auto; }
+.faixa-confianca-itens .icone-pix { width: 19px; height: 19px; }
+.step-arrow svg { width: 26px; height: 26px; stroke-width: 2.6; filter: drop-shadow(0 0 10px rgba(185,255,57,.4)); }
+.panel-heading svg { width: 14px; height: 14px; color: var(--muted); }
+.check-selo { color: var(--lime); display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.6px solid var(--line-strong); border-radius: 50%; flex: 0 0 auto; margin-top: 2px; }
+.ponto-verificado { color: var(--lime); display: inline-flex; }
+.ponto-verificado .icone-check { width: 11px; height: 11px; }
+.via-pix { display: inline-flex; align-items: center; gap: 6px; }
+.btn .icone-seta { margin-left: 2px; }
+
+/* compromissos: check svg no lugar do caractere */
+.compromissos li::before {
+  content: ""; width: 15px; height: 15px; top: 4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b9ff39' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12.5l5 5L19.5 7'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* FAQ: marcador padrão fora, chevron profissional dentro */
+.faq-list summary { list-style: none; position: relative; padding-right: 34px; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after {
+  content: ""; position: absolute; right: 8px; top: 50%; width: 16px; height: 16px;
+  transform: translateY(-50%); transition: transform .25s ease;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b9ff39' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.faq-list details[open] summary::after { transform: translateY(-50%) rotate(180deg); }
