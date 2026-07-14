@@ -68,7 +68,7 @@ img, svg { display: block; max-width: 100%; }
 .btn-block { width: 100%; min-height: 44px; }
 .btn-icon { font-size: 1.1rem; }
 
-.hero { padding: 70px 0 94px; min-height: 760px; }
+.hero { padding: 26px 0 80px; min-height: 720px; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(520px, .96fr); gap: 44px; align-items: center; position: relative; z-index: 1; }
 .hero-copy { padding: 26px 0; }
 .eyebrow, .section-kicker { color: var(--lime); text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; font-weight: 780; }
