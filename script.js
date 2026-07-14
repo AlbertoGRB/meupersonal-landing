@@ -1,58 +1,134 @@
-// Lista de espera: grava no Supabase (schema personais, tabela waitlist).
-// A anon key é pública por design; a RLS só permite INSERT com e-mail válido.
-const SUPABASE_URL = "https://nbqiuluvterxznzzoxlk.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_xV4_-RAWQ_K2n_f2g2v8Ow_LvYFe-jk";
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const header = document.querySelector('.site-header');
+  const progress = document.querySelector('.scroll-progress span');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mainNav = document.querySelector('.main-nav');
+  const navLinks = [...document.querySelectorAll('.main-nav a')];
+  const sections = [...document.querySelectorAll('main section[id]')];
 
-const form = document.getElementById("form-espera");
-const mensagem = document.getElementById("mensagem-espera");
+  document.getElementById('current-year').textContent = new Date().getFullYear();
 
-function mostrarMensagem(texto, tipo) {
-  mensagem.textContent = texto;
-  mensagem.className = `mensagem ${tipo}`;
-}
+  const updateScrollUI = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progress.style.width = `${value}%`;
+    header.classList.toggle('is-scrolled', scrollTop > 18);
 
-form.addEventListener("submit", async (evento) => {
-  evento.preventDefault();
+    const activeSection = sections
+      .filter(section => section.getBoundingClientRect().top <= 130)
+      .pop();
 
-  const dados = new FormData(form);
-  const email = String(dados.get("email") ?? "").trim();
-  const roleInterest = String(dados.get("role_interest") ?? "student");
+    navLinks.forEach(link => {
+      const target = link.getAttribute('href');
+      link.classList.toggle('active', activeSection && target === `#${activeSection.id}`);
+    });
+  };
 
-  // honeypot: bots preenchem o campo invisível
-  if (dados.get("site")) return;
+  window.addEventListener('scroll', updateScrollUI, { passive: true });
+  updateScrollUI();
 
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-    mostrarMensagem("Digite um e-mail válido.", "erro");
-    return;
+  menuToggle.addEventListener('click', () => {
+    const open = mainNav.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  navLinks.forEach(link => link.addEventListener('click', () => {
+    mainNav.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  document.addEventListener('click', event => {
+    if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
+      mainNav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.querySelectorAll('.reveal').forEach(element => {
+    const delay = element.dataset.delay || '0';
+    element.style.setProperty('--delay', `${delay}ms`);
+  });
+
+  if (!reduceMotion) {
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -40px' });
+
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+  } else {
+    document.querySelectorAll('.reveal').forEach(element => element.classList.add('is-visible'));
   }
 
-  const botao = form.querySelector("button[type=submit]");
-  botao.disabled = true;
-  mostrarMensagem("Enviando...", "ok");
+  const phone = document.getElementById('phone-tilt');
+  const heroVisual = document.querySelector('.hero-visual');
 
-  try {
-    const resposta = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
-      method: "POST",
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        "content-type": "application/json",
-        "content-profile": "personais",
-        prefer: "return=minimal"
-      },
-      body: JSON.stringify({ email, role_interest: roleInterest })
+  if (phone && heroVisual && !reduceMotion) {
+    heroVisual.addEventListener('mousemove', event => {
+      const rect = heroVisual.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      phone.style.transform = `rotateY(${(-10 + x * 12).toFixed(2)}deg) rotateX(${(-y * 8).toFixed(2)}deg) rotateZ(${(4 + x * 2).toFixed(2)}deg)`;
     });
 
-    if (resposta.status === 409) {
-      mostrarMensagem("Este e-mail já está na lista. Até breve!", "ok");
-    } else if (resposta.ok) {
-      mostrarMensagem("Pronto! Você será avisado no lançamento.", "ok");
-      form.reset();
-    } else {
-      mostrarMensagem("Não foi possível salvar agora. Tente de novo em instantes.", "erro");
-    }
-  } catch {
-    mostrarMensagem("Sem conexão. Verifique sua internet e tente de novo.", "erro");
-  } finally {
-    botao.disabled = false;
+    heroVisual.addEventListener('mouseleave', () => {
+      phone.style.transform = 'rotateY(-10deg) rotateZ(4deg)';
+    });
   }
-});
+
+  document.querySelectorAll('.heart').forEach(button => {
+    button.addEventListener('click', () => {
+      const liked = button.classList.toggle('is-liked');
+      button.textContent = liked ? '♥' : '♡';
+      button.setAttribute('aria-pressed', String(liked));
+    });
+  });
+
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || entry.target.dataset.done) return;
+      entry.target.dataset.done = 'true';
+      const target = Number(entry.target.dataset.target || 0);
+      const duration = reduceMotion ? 1 : 900;
+      const start = performance.now();
+
+      const tick = now => {
+        const progressValue = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progressValue, 3);
+        entry.target.textContent = Math.floor(target * eased);
+        if (progressValue < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      counterObserver.unobserve(entry.target);
+    });
+  }, { threshold: .6 });
+
+  document.querySelectorAll('.counter').forEach(counter => counterObserver.observe(counter));
+
+  document.querySelectorAll('.magnetic').forEach(button => {
+    if (reduceMotion) return;
+    button.addEventListener('mousemove', event => {
+      const rect = button.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+      button.style.transform = `translate(${x * .06}px, ${y * .08 - 2}px)`;
+    });
+    button.addEventListener('mouseleave', () => {
+      button.style.transform = '';
+    });
+  });
+
+  document.querySelectorAll('.week-row button, .time-grid button').forEach(button => {
+    button.addEventListener('click', () => {
+      const parent = button.parentElement;
+      parent.querySelectorAll('button').forEach(item => item.classList.remove('selected'));
+      button.classList.add('selected');
+    });
+  });
+})();

@@ -3,124 +3,399 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MeuPersonal: encontre o personal trainer ideal perto de você</title>
-  <meta name="description" content="Encontre personal trainers verificados no mapa, escolha um horário livre de verdade e pague com segurança. Aula marcada em minutos." />
-  <meta property="og:title" content="MeuPersonal" />
-  <meta property="og:description" content="Personal trainers verificados perto de você. Escolha o horário, pague e treine." />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Encontre personal trainers próximos, verificados e com agenda em tempo real." />
+  <meta name="theme-color" content="#06100c" />
+  <title>MeuPersonal | Encontre o personal certo perto de você</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topo">
-    <div class="container topo-conteudo">
-      <span class="logo">Meu<strong>Personal</strong></span>
-      <a class="botao botao-borda" href="#lista-de-espera">Entrar na lista</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a class="brand" href="#topo" aria-label="MeuPersonal - início">
+        <span>Meu</span><strong>Personal</strong>
+      </a>
+
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#para-personal">Para personal trainer</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#vantagens">Vantagens</a>
+        <a href="#duvidas">Dúvidas</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="link-login" href="/login">Entrar</a>
+        <a class="btn btn-primary btn-sm" href="/login">Cadastrar grátis</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container">
-        <p class="selo">Em breve para Android e iOS</p>
-        <h1>O personal trainer certo, <span class="destaque">perto de você</span></h1>
-        <p class="hero-sub">
-          Veja profissionais verificados no mapa, compare preço e avaliações,
-          escolha um horário livre de verdade e pague direto pelo app.
-          Sem troca de mensagens, sem incerteza.
-        </p>
+    <section class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="hero-glow glow-one" aria-hidden="true"></div>
+      <div class="hero-glow glow-two" aria-hidden="true"></div>
 
-        <form id="form-espera" class="form-espera" aria-describedby="mensagem-espera" novalidate>
-          <label class="sr-only" for="campo-email">Seu e-mail</label>
-          <input id="campo-email" name="email" type="email" required
-                 placeholder="Seu melhor e-mail" autocomplete="email" />
-          <label class="sr-only" for="campo-perfil">Quero usar como</label>
-          <select id="campo-perfil" name="role_interest" aria-label="Quero usar como">
-            <option value="student">Sou aluno</option>
-            <option value="trainer">Sou personal</option>
-          </select>
-          <input type="text" name="site" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <button class="botao botao-cheio" type="submit">Avise-me no lançamento</button>
-        </form>
-        <p id="mensagem-espera" class="mensagem" role="status" aria-live="polite"></p>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-star">✦</span>
+            Plataforma completa para alunos e personais
+          </div>
+
+          <h1 id="hero-title">
+            O personal trainer certo,
+            <span>perto de você</span>
+          </h1>
+
+          <p class="hero-description">
+            Encontre profissionais verificados, compare preço e avaliações,
+            escolha um horário livre de verdade e pague direto pela plataforma.
+            Sem troca de mensagens, sem incerteza.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary magnetic" href="#como-funciona">
+              <span class="btn-icon" aria-hidden="true">◎</span>
+              Quero contratar um personal
+            </a>
+            <a class="btn btn-outline magnetic" href="#para-personal">
+              <span class="btn-icon" aria-hidden="true">♙</span>
+              Sou personal trainer
+            </a>
+          </div>
+
+          <div class="trust-strip" aria-label="Diferenciais da plataforma">
+            <article class="trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-2.8 8.1-7 10-4.2-1.9-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/></svg>
+              <div><strong>Profissionais verificados</strong><span>Documentação validada</span></div>
+            </article>
+            <article class="trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M9 14h2M13 14h2"/></svg>
+              <div><strong>Horários reais</strong><span>Agenda em tempo real</span></div>
+            </article>
+            <article class="trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3M12 14v2"/></svg>
+              <div><strong>Pagamento seguro</strong><span>Protegido pela plataforma</span></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" data-delay="120">
+          <div class="visual-orbit orbit-one"></div>
+          <div class="visual-orbit orbit-two"></div>
+          <div class="phone-wrap" id="phone-tilt">
+            <div class="phone-shadow"></div>
+            <div class="phone">
+              <div class="phone-topbar">
+                <span>9:41</span>
+                <div class="phone-status"><i></i><i></i><i></i></div>
+              </div>
+              <div class="phone-screen">
+                <div class="phone-title-row">
+                  <div>
+                    <small>Encontre personal</small>
+                    <strong>perto de você</strong>
+                  </div>
+                  <button aria-label="Centralizar mapa">⌖</button>
+                </div>
+
+                <div class="mini-map">
+                  <div class="map-road road-a"></div>
+                  <div class="map-road road-b"></div>
+                  <div class="map-road road-c"></div>
+                  <span class="map-pin pin-a"><i></i></span>
+                  <span class="map-pin pin-b"><i></i></span>
+                  <span class="map-pin pin-c"><i></i></span>
+                  <span class="map-pin pin-d"><i></i></span>
+                  <span class="user-location"><i></i></span>
+                </div>
+
+                <div class="trainer-list">
+                  <article class="trainer-card active">
+                    <div class="avatar avatar-1"><span>LO</span></div>
+                    <div class="trainer-info">
+                      <strong>Lucas Oliveira</strong>
+                      <span class="rating">★ 5.0 <em>(128)</em></span>
+                      <small>R$ 120 / aula · 1,2 km</small>
+                    </div>
+                    <button class="heart" aria-label="Favoritar Lucas">♡</button>
+                  </article>
+                  <article class="trainer-card">
+                    <div class="avatar avatar-2"><span>JS</span></div>
+                    <div class="trainer-info">
+                      <strong>Juliana Santos</strong>
+                      <span class="rating">★ 4.9 <em>(96)</em></span>
+                      <small>R$ 110 / aula · 1,6 km</small>
+                    </div>
+                    <button class="heart" aria-label="Favoritar Juliana">♡</button>
+                  </article>
+                  <article class="trainer-card">
+                    <div class="avatar avatar-3"><span>RM</span></div>
+                    <div class="trainer-info">
+                      <strong>Rafael Martins</strong>
+                      <span class="rating">★ 5.0 <em>(210)</em></span>
+                      <small>R$ 130 / aula · 2,1 km</small>
+                    </div>
+                    <button class="heart" aria-label="Favoritar Rafael">♡</button>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="booking-panel floating-card">
+            <div class="panel-heading">
+              <span>‹</span>
+              <strong>Escolha o horário</strong>
+              <span>›</span>
+            </div>
+            <div class="week-row">
+              <button><span>Seg</span><strong>26</strong></button>
+              <button><span>Ter</span><strong>27</strong></button>
+              <button class="selected"><span>Qua</span><strong>28</strong></button>
+              <button><span>Qui</span><strong>29</strong></button>
+              <button><span>Sex</span><strong>30</strong></button>
+              <button><span>Sáb</span><strong>31</strong></button>
+            </div>
+            <span class="panel-label">Horários disponíveis</span>
+            <div class="time-grid">
+              <button>06:00</button><button>07:00</button>
+              <button>08:00</button><button class="selected">09:00</button>
+              <button>10:00</button><button>11:00</button>
+            </div>
+            <div class="payment-box">
+              <div><small>Pagamento seguro</small><strong>R$ 120,00</strong><span>via Pix na plataforma</span></div>
+              <button class="btn btn-primary btn-block">Confirmar e pagar →</button>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <section class="secao" id="como-funciona">
+    <section class="section" id="como-funciona">
       <div class="container">
-        <h2>Como funciona</h2>
-        <div class="passos">
-          <article class="passo">
-            <span class="passo-numero" aria-hidden="true">1</span>
-            <h3>Encontre no mapa</h3>
-            <p>Personais próximos aparecem no mapa com preço, especialidades e avaliações reais de outros alunos.</p>
+        <div class="section-heading reveal">
+          <span class="section-kicker">Jornada simples</span>
+          <h2>Como funciona</h2>
+          <p>Do mapa à aula confirmada em poucos passos.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card reveal" data-delay="0">
+            <span class="step-number">1</span>
+            <div class="step-icon">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 48l14-7 16 7 14-7v12l-14 7-16-7-14 7V48z"/><path d="M32 7c-8 0-14 6-14 14 0 11 14 25 14 25s14-14 14-25c0-8-6-14-14-14z"/><circle cx="32" cy="21" r="5"/></svg>
+            </div>
+            <h3>Encontre perto de você</h3>
+            <p>Busque profissionais próximos com preço, especialidades e avaliações reais de outros alunos.</p>
           </article>
-          <article class="passo">
-            <span class="passo-numero" aria-hidden="true">2</span>
+
+          <article class="step-card reveal" data-delay="100">
+            <span class="step-number">2</span>
+            <div class="step-icon">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="15" width="44" height="39" rx="4"/><path d="M20 9v12M44 9v12M10 26h44M20 35h6M31 35h6M42 35h4M20 44h6M31 44h6"/></svg>
+            </div>
             <h3>Escolha o horário</h3>
-            <p>A agenda mostra só horários realmente livres. Escolheu, reservou: ninguém marca por cima.</p>
+            <p>Veja a agenda em tempo real e selecione o melhor horário para seu treino, sem desencontros.</p>
           </article>
-          <article class="passo">
-            <span class="passo-numero" aria-hidden="true">3</span>
+
+          <article class="step-card reveal" data-delay="200">
+            <span class="step-number">3</span>
+            <div class="step-icon">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="13" width="48" height="34" rx="5"/><path d="M8 24h48M16 36h14"/><rect x="36" y="34" width="18" height="20" rx="3"/><path d="M40 34v-4a5 5 0 0110 0v4M45 42v4"/></svg>
+            </div>
             <h3>Pague e treine</h3>
-            <p>Pagamento seguro pelo app via Pix. A aula só é confirmada com o pagamento aprovado.</p>
+            <p>Pagamento 100% seguro. A aula é confirmada automaticamente após a aprovação.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="secao secao-personal" id="para-personais">
-      <div class="container">
-        <h2>É personal trainer? <span class="destaque">Receba alunos novos toda semana</span></h2>
-        <ul class="beneficios">
-          <li><strong>Perfil verificado</strong> valida sua documentação e passa confiança para quem contrata.</li>
-          <li><strong>Agenda sua, regras suas:</strong> você define horários, região de atendimento e o preço da aula.</li>
-          <li><strong>Receba toda semana</strong> na sua conta ou chave Pix, com extrato claro do que está liberado.</li>
-          <li><strong>Zero negociação por mensagem:</strong> o aluno chega com horário escolhido e aula paga.</li>
-        </ul>
+    <section class="section section-panel" id="para-personal">
+      <div class="container trainer-section-grid">
+        <div class="trainer-copy reveal">
+          <span class="section-kicker">Para profissionais</span>
+          <h2>É personal trainer?<br><span>Receba alunos novos toda semana</span></h2>
+          <ul class="benefit-list">
+            <li><span>✓</span><p><strong>Perfil verificado:</strong> documentação validada e mais confiança para quem contrata.</p></li>
+            <li><span>✓</span><p><strong>Agenda sua, regras suas:</strong> defina horários, região de atendimento e preço da aula.</p></li>
+            <li><span>✓</span><p><strong>Receba toda semana:</strong> acompanhe repasses e ganhos com transparência.</p></li>
+            <li><span>✓</span><p><strong>Zero negociação por mensagem:</strong> o aluno chega com horário escolhido e aula paga.</p></li>
+          </ul>
+          <a class="btn btn-primary" href="#cta-final">Quero cadastrar meu perfil</a>
+        </div>
+
+        <div class="dashboard-mockup reveal" data-delay="150">
+          <div class="dashboard-glow" aria-hidden="true"></div>
+          <div class="dashboard-card profile-summary">
+            <div class="dashboard-avatar avatar-4">ES</div>
+            <div><span>Perfil verificado <b>●</b></span><strong>Eduardo Silva</strong><small>CREF 123456-G/SP</small><em>★ 5.0 (198 avaliações)</em></div>
+          </div>
+          <div class="dashboard-stats">
+            <div><span>Alunos esta semana</span><strong class="counter" data-target="12">0</strong></div>
+            <div><span>Aulas agendadas</span><strong class="counter" data-target="18">0</strong></div>
+            <div><span>Faturamento</span><strong>R$ 2.340</strong></div>
+          </div>
+          <div class="dashboard-calendar">
+            <div class="calendar-head"><strong>Agenda da semana</strong><span>Maio 2026</span></div>
+            <div class="calendar-days">
+              <div><span>Seg</span><strong>26</strong></div><div><span>Ter</span><strong>27</strong></div><div class="selected"><span>Qua</span><strong>28</strong></div><div><span>Qui</span><strong>29</strong></div><div><span>Sex</span><strong>30</strong></div><div><span>Sáb</span><strong>31</strong></div>
+            </div>
+            <div class="calendar-slots">
+              <span>07:00</span><i class="slot s1"></i><i class="slot s2"></i>
+              <span>08:00</span><i class="slot s3"></i><i class="slot s4"></i>
+              <span>09:00</span><i class="slot s5"></i><i class="slot s6"></i>
+              <span>10:00</span><i class="slot s7"></i><i class="slot s8"></i>
+            </div>
+          </div>
+          <div class="payout-card">
+            <strong>Próximos pagamentos</strong>
+            <p><span>Qua, 28/05</span><b>R$ 120,00</b></p>
+            <p><span>Qui, 29/05</span><b>R$ 120,00</b></p>
+            <p><span>Sex, 30/05</span><b>R$ 110,00</b></p>
+            <div><span>Total</span><strong>R$ 350,00</strong></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="secao" id="confianca">
+    <section class="section" id="seguranca">
       <div class="container">
-        <h2>Segurança em primeiro lugar</h2>
-        <div class="passos">
-          <article class="passo">
-            <h3>Profissionais verificados</h3>
-            <p>Todo personal passa por validação de documentos antes de aparecer no mapa.</p>
+        <div class="section-heading reveal">
+          <span class="section-kicker">Confiança em cada etapa</span>
+          <h2>Segurança em primeiro lugar</h2>
+          <p>Proteção para alunos, profissionais e pagamentos.</p>
+        </div>
+
+        <div class="security-grid">
+          <article class="security-card reveal">
+            <div class="security-icon">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7l22 9v15c0 14-9 23-22 29C19 54 10 45 10 31V16l22-9z"/><circle cx="25" cy="29" r="6"/><path d="M15 43c1-6 6-9 10-9s9 3 10 9M41 25h10M46 20v10"/></svg>
+            </div>
+            <div><h3>Profissionais verificados</h3><p>Todo personal passa por análise documental antes de aparecer para os alunos.</p></div>
           </article>
-          <article class="passo">
-            <h3>Pagamento protegido</h3>
-            <p>O valor só é repassado ao profissional depois da aula. Falhou o pagamento, o horário libera de volta.</p>
+          <article class="security-card reveal" data-delay="100">
+            <div class="security-icon">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="7" y="12" width="50" height="34" rx="5"/><path d="M7 24h50M16 36h16"/><rect x="36" y="34" width="20" height="23" rx="3"/><path d="M41 34v-5a5 5 0 0110 0v5M46 43v5"/></svg>
+            </div>
+            <div><h3>Pagamento protegido</h3><p>O valor só é liberado conforme as regras da plataforma e o status da aula.</p></div>
           </article>
-          <article class="passo">
-            <h3>Seus dados, protegidos</h3>
-            <p>Dados pessoais tratados conforme a LGPD, com acesso restrito e criptografia.</p>
+          <article class="security-card reveal" data-delay="200">
+            <div class="security-icon">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7l22 9v15c0 14-9 23-22 29C19 54 10 45 10 31V16l22-9z"/><rect x="22" y="29" width="20" height="16" rx="3"/><path d="M26 29v-5a6 6 0 0112 0v5M32 35v4"/></svg>
+            </div>
+            <div><h3>Seus dados, protegidos</h3><p>Dados pessoais tratados conforme a LGPD, com acesso restrito e boas práticas.</p></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="secao secao-cta" id="lista-de-espera">
+    <section class="section compact-section" id="vantagens">
       <div class="container">
-        <h2>Seja avisado no lançamento</h2>
-        <p>Deixe seu e-mail e ganhe acesso antecipado ao MeuPersonal.</p>
-        <a class="botao botao-cheio" href="#form-espera"
-           onclick="document.getElementById('campo-email').focus()">Quero entrar na lista</a>
+        <div class="section-heading reveal">
+          <span class="section-kicker">Tudo em um só lugar</span>
+          <h2>Por que escolher o <span>MeuPersonal?</span></h2>
+        </div>
+
+        <div class="benefit-grid">
+          <article class="mini-benefit reveal"><span>◉</span><div><h3>Perfis verificados</h3><p>Mais confiança para treinar com tranquilidade.</p></div></article>
+          <article class="mini-benefit reveal" data-delay="70"><span>▦</span><div><h3>Agenda em tempo real</h3><p>Horários livres de verdade, sem desencontro.</p></div></article>
+          <article class="mini-benefit reveal" data-delay="140"><span>▣</span><div><h3>Pagamento seguro</h3><p>Transações protegidas dentro da plataforma.</p></div></article>
+          <article class="mini-benefit reveal" data-delay="210"><span>☆</span><div><h3>Avaliações reais</h3><p>Opiniões de alunos para escolher melhor.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section section" id="duvidas">
+      <div class="container faq-grid">
+        <div class="faq-intro reveal">
+          <span class="section-kicker">Perguntas frequentes</span>
+          <h2>Dúvidas rápidas antes de começar</h2>
+          <p>O essencial sobre cadastro, agenda e pagamento.</p>
+        </div>
+        <div class="faq-list reveal" data-delay="100">
+          <details>
+            <summary>O personal precisa ser verificado?</summary>
+            <p>Sim. O perfil só fica público após a validação da documentação obrigatória.</p>
+          </details>
+          <details>
+            <summary>Quando a reserva é confirmada?</summary>
+            <p>A reserva é confirmada após a aprovação do pagamento e o horário fica bloqueado automaticamente.</p>
+          </details>
+          <details>
+            <summary>Posso escolher um profissional perto de mim?</summary>
+            <p>Sim. A descoberta utiliza localização e região de atendimento para mostrar opções próximas.</p>
+          </details>
+          <details>
+            <summary>Como o personal recebe?</summary>
+            <p>O profissional acompanha os valores e repasses pela plataforma, conforme as regras definidas.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="cta-final">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div class="athlete athlete-left" aria-hidden="true">
+            <div class="head"></div><div class="body"></div><div class="arm"></div>
+          </div>
+          <div class="cta-content">
+            <span>Comece hoje</span>
+            <h2>Pronto para treinar melhor?<br><strong>Encontre seu personal agora</strong></h2>
+            <p>Mais praticidade, segurança e resultados para você.</p>
+            <div class="cta-actions">
+              <a class="btn btn-primary magnetic" href="/login">Quero contratar um personal →</a>
+              <a class="btn btn-outline magnetic" href="/login">Sou personal trainer →</a>
+            </div>
+          </div>
+          <div class="athlete athlete-right" aria-hidden="true">
+            <div class="head"></div><div class="body"></div><div class="arm"></div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="rodape">
-    <div class="container rodape-conteudo">
-      <span class="logo">Meu<strong>Personal</strong></span>
-      <p>© 2026 MeuPersonal · Todos os direitos reservados</p>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#topo"><span>Meu</span><strong>Personal</strong></a>
+        <p>Conectando alunos e personal trainers com segurança e praticidade.</p>
+      </div>
+      <div>
+        <h3>Navegação</h3>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#para-personal">Para personal trainer</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#duvidas">Dúvidas</a>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <a href="#">Termos de uso</a>
+        <a href="#">Política de privacidade</a>
+        <a href="#">LGPD</a>
+      </div>
+      <div>
+        <h3>Siga a gente</h3>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="WhatsApp">◉</a>
+        </div>
+      </div>
     </div>
+    <div class="footer-bottom">© <span id="current-year"></span> MeuPersonal. Todos os direitos reservados.</div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
