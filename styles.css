@@ -30,12 +30,11 @@ img, svg { display: block; max-width: 100%; }
 .site-header {
   position: sticky; top: 0; z-index: 100;
   height: var(--header-h);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  background: rgba(4, 10, 7, .72);
-  backdrop-filter: blur(18px);
-  transition: background .3s ease, box-shadow .3s ease;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  transition: background .3s ease, box-shadow .3s ease, border-color .3s ease, backdrop-filter .3s ease;
 }
-.site-header.is-scrolled { background: rgba(4, 10, 7, .92); box-shadow: 0 10px 40px rgba(0,0,0,.3); }
+.site-header.is-scrolled { background: rgba(4, 10, 7, .85); backdrop-filter: blur(18px); border-color: rgba(255,255,255,.06); box-shadow: 0 10px 40px rgba(0,0,0,.3); }
 .header-inner { height: 100%; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
 .brand { display: inline-flex; align-items: baseline; font-weight: 780; letter-spacing: -.04em; font-size: 1.35rem; white-space: nowrap; }
 .brand strong { color: var(--lime); }
