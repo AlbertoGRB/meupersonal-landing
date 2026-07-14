@@ -112,7 +112,21 @@
         <div class="hero-visual reveal" data-delay="120">
           <div class="visual-orbit orbit-one"></div>
           <div class="visual-orbit orbit-two"></div>
+          <div class="granulado-arco" aria-hidden="true"></div>
           <div class="phone-wrap" id="phone-tilt">
+            <svg class="anel anel-tras" viewBox="0 0 420 150" aria-hidden="true">
+              <defs>
+                <linearGradient id="anel-grad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#b9ff39" stop-opacity="0"/>
+                  <stop offset=".5" stop-color="#b9ff39" stop-opacity="1"/>
+                  <stop offset="1" stop-color="#b9ff39" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 82 C 60 18, 360 18, 408 82" fill="none" stroke="url(#anel-grad)" stroke-width="3.4" stroke-linecap="round"/>
+            </svg>
+            <svg class="anel anel-frente" viewBox="0 0 420 150" aria-hidden="true">
+              <path d="M12 82 C 60 146, 360 146, 408 82" fill="none" stroke="url(#anel-grad)" stroke-width="4" stroke-linecap="round"/>
+            </svg>
             <img class="celular-app" src="imagens/celular-app.webp" alt="Aplicativo MeuPersonal mostrando personais próximos no mapa" width="745" height="1344" fetchpriority="high" />
           </div>
           <aside class="booking-panel floating-card">

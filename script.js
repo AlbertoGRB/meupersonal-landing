@@ -223,26 +223,3 @@
     requestAnimationFrame(morph);
   }, PAUSA_FRASE_1 + 600);
 })();
-
-/* partículas de luz ao redor do celular (granulado em movimento) */
-(() => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const visual = document.querySelector('.hero-visual');
-  if (!visual) return;
-
-  const TOTAL = 18;
-  for (let i = 0; i < TOTAL; i++) {
-    const particula = document.createElement('span');
-    particula.className = 'particula';
-    particula.setAttribute('aria-hidden', 'true');
-    const tamanho = 2 + Math.random() * 3.6;
-    particula.style.width = `${tamanho}px`;
-    particula.style.height = `${tamanho}px`;
-    particula.style.left = `${6 + Math.random() * 86}%`;
-    particula.style.bottom = `${5 + Math.random() * 62}%`;
-    const duracao = 6 + Math.random() * 8;
-    particula.style.animationDuration = `${duracao}s`;
-    particula.style.animationDelay = `${-Math.random() * duracao}s`;
-    visual.appendChild(particula);
-  }
-})();

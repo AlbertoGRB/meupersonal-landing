@@ -341,19 +341,7 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 .pagina-legal ul { padding-left: 22px; }
 .pagina-legal a { color: var(--lime); }
 
-/* ====== vida ao redor do celular: partículas, flutuação e respiro do painel ====== */
-.particula {
-  position: absolute; border-radius: 50%;
-  background: var(--lime); box-shadow: 0 0 10px rgba(185,255,57,.65);
-  opacity: 0; pointer-events: none; z-index: 2;
-  animation: particula-sobe linear infinite;
-}
-@keyframes particula-sobe {
-  0% { transform: translateY(30px) translateX(0); opacity: 0; }
-  12% { opacity: .55; }
-  60% { opacity: .38; transform: translateY(-90px) translateX(8px); }
-  100% { transform: translateY(-190px) translateX(-6px); opacity: 0; }
-}
+/* ====== vida ao redor do celular: granulado em arco, anel e flutuação ====== */
 
 /* celular levita (animação na imagem interna; o tilt do mouse fica no wrapper) */
 .phone-wrap .celular-app { animation: celular-flutua 6s ease-in-out infinite; }
@@ -384,4 +372,33 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 @media (prefers-reduced-motion: reduce) {
   .particula { display: none; }
   .phone-wrap .celular-app, .phone-wrap::after, .booking-panel { animation: none; }
+}
+
+/* granulado: textura de pontos em faixa curva girando devagar atrás do celular */
+.granulado-arco {
+  position: absolute; width: 880px; height: 880px; left: -220px; top: -60px;
+  border-radius: 50%; pointer-events: none; z-index: 0; opacity: .8;
+  background-image: radial-gradient(circle, rgba(185, 255, 57, .5) 1.4px, transparent 1.9px);
+  background-size: 17px 17px;
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0 45%, rgba(0,0,0,.9) 56%, rgba(0,0,0,.55) 66%, transparent 74%);
+  mask-image: radial-gradient(circle at center, transparent 0 45%, rgba(0,0,0,.9) 56%, rgba(0,0,0,.55) 66%, transparent 74%);
+  animation: granulado-gira 70s linear infinite;
+  will-change: transform;
+}
+@keyframes granulado-gira { to { transform: rotate(360deg); } }
+
+/* anel de energia na base do celular (arco de trás + arco da frente) */
+.anel { position: absolute; left: -14%; width: 128%; bottom: -34px; height: auto; pointer-events: none; filter: drop-shadow(0 0 12px rgba(185,255,57,.75)); animation: anel-pulsa 4.2s ease-in-out infinite; }
+.anel-tras { z-index: -1; opacity: .55; }
+.anel-frente { z-index: 2; }
+@keyframes anel-pulsa {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(185,255,57,.55)); }
+  50% { filter: drop-shadow(0 0 22px rgba(185,255,57,.95)); }
+}
+
+@media (max-width: 760px) {
+  .granulado-arco { width: 560px; height: 560px; left: -160px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .granulado-arco, .anel { animation: none; }
 }
