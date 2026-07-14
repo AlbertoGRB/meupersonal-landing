@@ -146,18 +146,36 @@
   const jaViu = sessionStorage.getItem('meupersonal-intro') === 'vista';
 
   let encerrada = false;
-  const encerrar = (imediato = false) => {
+  const encerrar = (imediato = false, comViagem = false) => {
     if (encerrada) return;
     encerrada = true;
     sessionStorage.setItem('meupersonal-intro', 'vista');
-    document.body.classList.remove('intro-ativa');
     abertura.setAttribute('aria-hidden', 'true');
+
     if (imediato) {
+      document.body.classList.remove('intro-ativa');
       abertura.remove();
-    } else {
-      abertura.classList.add('saindo');
-      setTimeout(() => abertura.remove(), 750);
+      return;
     }
+
+    if (comViagem) {
+      // transporte: frase voa, portal abre, hero aterrissa
+      abertura.classList.add('viajando');
+      setTimeout(() => {
+        document.body.classList.remove('intro-ativa');
+        document.body.classList.add('chegando');
+        abertura.classList.add('saindo');
+        setTimeout(() => {
+          abertura.remove();
+          document.body.classList.remove('chegando');
+        }, 900);
+      }, 560);
+      return;
+    }
+
+    document.body.classList.remove('intro-ativa');
+    abertura.classList.add('saindo');
+    setTimeout(() => abertura.remove(), 750);
   };
 
   if (jaViu || reduceMotion) {
@@ -199,7 +217,7 @@
         frase2.style.filter = '';
         frase2.style.opacity = '1';
         // ato 2: segura a frase final e revela o hero
-        setTimeout(() => encerrar(), PAUSA_FRASE_2);
+        setTimeout(() => encerrar(false, true), PAUSA_FRASE_2);
       }
     };
     requestAnimationFrame(morph);

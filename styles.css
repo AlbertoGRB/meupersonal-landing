@@ -283,3 +283,34 @@ img, svg { display: block; max-width: 100%; }
 }
 .intro-pular:hover { color: var(--lime); border-color: var(--line-strong); }
 body.intro-ativa { overflow: hidden; }
+
+/* viagem: frase voa até a pessoa, portal verde abre e o hero aterrissa */
+.intro-palco { transition: transform .68s cubic-bezier(.5, 0, .9, .4), opacity .68s ease, filter .68s ease; }
+.intro-abertura.viajando .intro-palco { transform: scale(8); opacity: 0; filter: blur(12px); }
+.intro-portal { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.intro-portal::before {
+  content: ""; width: 26vmax; height: 26vmax; border-radius: 50%;
+  border: 3px solid var(--lime);
+  box-shadow:
+    0 0 60px 18px rgba(185,255,57,.5),
+    inset 0 0 80px rgba(185,255,57,.35);
+  opacity: 0; transform: scale(.04);
+}
+.intro-abertura.viajando .intro-portal::before { animation: portal-viagem .72s cubic-bezier(.45, 0, .8, .45) forwards; }
+@keyframes portal-viagem {
+  0% { opacity: 0; transform: scale(.04); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: scale(10); }
+}
+.intro-abertura.viajando .intro-pular { opacity: 0; }
+body.chegando .site-header,
+body.chegando main,
+body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, .3, 1) both; }
+@keyframes aterrissagem {
+  from { transform: scale(1.07); opacity: .15; filter: blur(9px); }
+  to { transform: none; opacity: 1; filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-abertura.viajando .intro-palco, .intro-abertura.viajando .intro-portal::before { animation: none; transition: none; }
+  body.chegando .site-header, body.chegando main, body.chegando .site-footer { animation: none; }
+}
