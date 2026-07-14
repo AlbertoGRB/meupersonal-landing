@@ -314,3 +314,29 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
   .intro-abertura.viajando .intro-palco, .intro-abertura.viajando .intro-portal::before { animation: none; transition: none; }
   body.chegando .site-header, body.chegando main, body.chegando .site-footer { animation: none; }
 }
+
+/* ícones svg dos botões do hero */
+.btn-svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* faixa de confiança institucional */
+.faixa-confianca { border-block: 1px solid var(--line-neutra, rgba(255,255,255,.08)); background: rgba(10, 21, 16, .5); }
+.faixa-confianca-itens { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 38px; padding: 18px 24px; }
+.faixa-confianca-itens span { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: .88rem; font-weight: 600; }
+.faixa-confianca-itens svg { width: 19px; height: 19px; fill: none; stroke: var(--lime); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* compromissos (garantias) */
+.compromissos { margin-top: 34px; padding: 28px; border-radius: var(--radius); border: 1px solid var(--line); background: linear-gradient(150deg, rgba(185,255,57,.05), rgba(10,21,16,.6)); }
+.compromissos h3 { margin: 0 0 16px; font-size: 1.15rem; letter-spacing: -.01em; }
+.compromissos ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px 28px; }
+.compromissos li { position: relative; padding-left: 28px; color: var(--muted); font-size: .93rem; }
+.compromissos li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--lime); font-weight: 800; }
+.compromissos strong { color: var(--text); }
+
+/* páginas legais */
+.pagina-legal { max-width: 760px; margin: 0 auto; padding: 56px 24px 90px; }
+.pagina-legal h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: -.03em; margin-bottom: 6px; }
+.pagina-legal .atualizacao { color: var(--muted-2); font-size: .85rem; margin-bottom: 34px; display: block; }
+.pagina-legal h2 { font-size: 1.15rem; margin: 30px 0 10px; color: var(--lime); }
+.pagina-legal p, .pagina-legal li { color: var(--muted); font-size: .96rem; }
+.pagina-legal ul { padding-left: 22px; }
+.pagina-legal a { color: var(--lime); }
