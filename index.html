@@ -11,6 +11,25 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="intro-abertura" id="intro-abertura" aria-hidden="false">
+    <svg class="intro-filtro" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="limiar-intro">
+          <feColorMatrix in="SourceGraphic" type="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 255 -140" />
+        </filter>
+      </defs>
+    </svg>
+    <div class="intro-palco" style="filter: url(#limiar-intro)">
+      <span class="intro-frase" id="intro-frase-1">Você está pronto para mudar de vida?</span>
+      <span class="intro-frase" id="intro-frase-2">Espero que sim, vamos organizar sua jornada!!</span>
+    </div>
+    <button class="intro-pular" id="intro-pular" type="button">Pular introdução</button>
+  </div>
+
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
   <header class="site-header" id="topo">

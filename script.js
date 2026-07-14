@@ -132,3 +132,76 @@
     });
   });
 })();
+
+/* Abertura em dois atos: frase 1 → pausa 2s → morph gooey → frase 2 → revela o hero.
+   Pula automaticamente para quem prefere menos movimento ou já viu nesta sessão. */
+(() => {
+  const abertura = document.getElementById('intro-abertura');
+  if (!abertura) return;
+
+  const frase1 = document.getElementById('intro-frase-1');
+  const frase2 = document.getElementById('intro-frase-2');
+  const botaoPular = document.getElementById('intro-pular');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const jaViu = sessionStorage.getItem('meupersonal-intro') === 'vista';
+
+  let encerrada = false;
+  const encerrar = (imediato = false) => {
+    if (encerrada) return;
+    encerrada = true;
+    sessionStorage.setItem('meupersonal-intro', 'vista');
+    document.body.classList.remove('intro-ativa');
+    abertura.setAttribute('aria-hidden', 'true');
+    if (imediato) {
+      abertura.remove();
+    } else {
+      abertura.classList.add('saindo');
+      setTimeout(() => abertura.remove(), 750);
+    }
+  };
+
+  if (jaViu || reduceMotion) {
+    encerrar(true);
+    return;
+  }
+
+  document.body.classList.add('intro-ativa');
+  botaoPular.addEventListener('click', () => encerrar());
+
+  // ato 1: frase 1 entra suave, segura 2s, e faz o morph gooey para a frase 2
+  frase1.style.opacity = '0';
+  requestAnimationFrame(() => {
+    frase1.style.transition = 'opacity .6s ease';
+    frase1.style.opacity = '1';
+  });
+
+  const DURACAO_MORPH = 1000;
+  const PAUSA_FRASE_1 = 2000;
+  const PAUSA_FRASE_2 = 1900;
+
+  setTimeout(() => {
+    frase1.style.transition = '';
+    const inicio = performance.now();
+
+    const morph = (agora) => {
+      if (encerrada) return;
+      const fracao = Math.min((agora - inicio) / DURACAO_MORPH, 1);
+      frase2.style.filter = `blur(${Math.min(8 / Math.max(fracao, 0.001) - 8, 100)}px)`;
+      frase2.style.opacity = `${Math.pow(fracao, 0.4) * 100}%`;
+      const inversa = 1 - fracao;
+      frase1.style.filter = `blur(${Math.min(8 / Math.max(inversa, 0.001) - 8, 100)}px)`;
+      frase1.style.opacity = `${Math.pow(inversa, 0.4) * 100}%`;
+
+      if (fracao < 1) {
+        requestAnimationFrame(morph);
+      } else {
+        frase1.style.opacity = '0';
+        frase2.style.filter = '';
+        frase2.style.opacity = '1';
+        // ato 2: segura a frase final e revela o hero
+        setTimeout(() => encerrar(), PAUSA_FRASE_2);
+      }
+    };
+    requestAnimationFrame(morph);
+  }, PAUSA_FRASE_1 + 600);
+})();
