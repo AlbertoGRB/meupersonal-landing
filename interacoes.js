@@ -2,7 +2,6 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const header = document.querySelector('.site-header');
   const progress = document.querySelector('.scroll-progress span');
-  const menuToggle = document.querySelector('.menu-toggle');
   const mainNav = document.querySelector('.main-nav');
   const navLinks = [...document.querySelectorAll('.main-nav a')];
   const sections = [...document.querySelectorAll('main section[id]')];
@@ -28,23 +27,6 @@
 
   window.addEventListener('scroll', updateScrollUI, { passive: true });
   updateScrollUI();
-
-  menuToggle.addEventListener('click', () => {
-    const open = mainNav.classList.toggle('is-open');
-    menuToggle.setAttribute('aria-expanded', String(open));
-  });
-
-  navLinks.forEach(link => link.addEventListener('click', () => {
-    mainNav.classList.remove('is-open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-  }));
-
-  document.addEventListener('click', event => {
-    if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
-      mainNav.classList.remove('is-open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
 
   document.querySelectorAll('.reveal').forEach(element => {
     const delay = element.dataset.delay || '0';
@@ -143,13 +125,13 @@
   const frase2 = document.getElementById('intro-frase-2');
   const botaoPular = document.getElementById('intro-pular');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const jaViu = sessionStorage.getItem('meupersonal-intro') === 'vista';
+  const jaViu = sessionStorage.getItem('personalaqui-intro') === 'vista';
 
   let encerrada = false;
   const encerrar = (imediato = false, comViagem = false) => {
     if (encerrada) return;
     encerrada = true;
-    sessionStorage.setItem('meupersonal-intro', 'vista');
+    sessionStorage.setItem('personalaqui-intro', 'vista');
     abertura.setAttribute('aria-hidden', 'true');
 
     if (imediato) {
@@ -223,3 +205,13 @@
     requestAnimationFrame(morph);
   }, PAUSA_FRASE_1 + 600);
 })();
+
+// Dúvidas: só uma resposta aberta por vez
+document.querySelectorAll('.faq-list details').forEach((item) => {
+  item.addEventListener('toggle', () => {
+    if (!item.open) return;
+    item.parentElement.querySelectorAll('details[open]').forEach((outra) => {
+      if (outra !== item) outra.open = false;
+    });
+  });
+});
