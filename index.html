@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Encontre personal trainers próximos, verificados e com agenda em tempo real." />
+  <meta name="description" content="Encontre personal trainers verificados perto de você, veja a agenda real, reserve o horário e pague com Pix ou cartão na plataforma. Encontre. Agende. Treine." />
   <meta name="theme-color" content="#06100c" />
-  <title>PersonalAqui | Encontre o personal certo perto de você</title>
+  <title>PersonalAqui | Encontre personal trainers perto de você</title>
+  <link rel="canonical" href="https://albertogrb.github.io/meupersonal-landing/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PersonalAqui" />
+  <meta property="og:title" content="PersonalAqui | Encontre personal trainers perto de você" />
+  <meta property="og:description" content="Profissionais verificados, agenda em tempo real e pagamento seguro na plataforma. Encontre. Agende. Treine." />
+  <meta property="og:url" content="https://albertogrb.github.io/meupersonal-landing/" />
+  <meta property="og:image" content="https://albertogrb.github.io/meupersonal-landing/imagens/rodape-capa.webp" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PersonalAqui | Encontre personal trainers perto de você" />
+  <meta name="twitter:description" content="Profissionais verificados, agenda em tempo real e pagamento seguro na plataforma." />
+  <meta name="twitter:image" content="https://albertogrb.github.io/meupersonal-landing/imagens/rodape-capa.webp" />
   <link rel="icon" type="image/png" href="imagens/logo.png" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="styles.css" />
@@ -24,8 +36,8 @@
       </defs>
     </svg>
     <div class="intro-palco" style="filter: url(#limiar-intro)">
-      <span class="intro-frase" id="intro-frase-1">Você está pronto para mudar de vida?</span>
-      <span class="intro-frase" id="intro-frase-2">Espero que sim, vamos organizar sua jornada!!</span>
+      <span class="intro-frase" id="intro-frase-1">Seu personal está <em>mais perto</em> do que você imagina.</span>
+      <span class="intro-frase" id="intro-frase-2"><em>Encontre.</em> Agende. <em>Treine.</em></span>
     </div>
     <div class="intro-portal" aria-hidden="true"></div>
     <button class="intro-pular" id="intro-pular" type="button">Pular introdução</button>
@@ -37,8 +49,8 @@
   <header class="site-header" id="topo">
     <div class="container header-inner">
       <a class="brand" href="#topo" aria-label="PersonalAqui - início">
-        <img class="brand-logo" src="imagens/logo.png" alt="" width="168" height="193" />
-        <span>Personal</span><strong>Aqui</strong>
+        <img class="brand-logo" src="imagens/logo.png" alt="" width="656" height="862" />
+        <span class="brand-nome">Personal<strong>Aqui</strong></span>
       </a>
 
       <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
@@ -51,7 +63,13 @@
 
       <div class="header-actions">
         <a class="link-login" href="/login">Entrar</a>
-        <a class="btn btn-primary btn-sm" href="/login?aba=criar">Cadastrar grátis</a>
+        <div class="cadastro-escolha">
+          <button class="btn btn-primary btn-sm" type="button" id="abrir-cadastro-escolha" aria-haspopup="true" aria-expanded="false">Cadastrar grátis</button>
+          <div class="cadastro-menu" id="cadastro-menu" hidden>
+            <a href="/login?aba=criar&tipo=aluno">Quero me cadastrar como aluno</a>
+            <a href="/login?aba=criar&tipo=personal">Quero me cadastrar como personal trainer</a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -73,11 +91,11 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary magnetic" href="/login">
+            <a class="btn btn-primary btn-brilho magnetic" href="/login?aba=criar&tipo=aluno">
               <svg class="btn-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg>
               Quero contratar um personal
             </a>
-            <a class="btn btn-outline magnetic" href="/login">
+            <a class="btn btn-outline magnetic" href="/login?aba=criar&tipo=personal">
               <svg class="btn-svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.2" y="7.6" width="3" height="8.8" rx="1.2"/><rect x="1.4" y="9.6" width="1.9" height="4.8" rx="0.95"/><rect x="16.8" y="7.6" width="3" height="8.8" rx="1.2"/><rect x="20.7" y="9.6" width="1.9" height="4.8" rx="0.95"/><path d="M7.2 12h9.6"/></svg>
               Sou personal trainer
             </a>
@@ -137,7 +155,7 @@
               <button>10:00</button><button>11:00</button>
             </div>
             <div class="payment-box">
-              <div><small>Pagamento seguro</small><strong>R$ 120,00</strong><span class="via-pix"><img class="icone-pix" src="imagens/pix.png" alt="" width="230" height="219" loading="lazy" /> via Pix na plataforma</span></div>
+              <div><small>Pagamento seguro</small><strong>R$ 120,00</strong><span class="via-pix"><img class="icone-pix" src="imagens/pix.png" alt="" width="230" height="219" loading="lazy" /> Pix ou cartão, na plataforma</span></div>
               <button class="btn btn-primary btn-block">Confirmar e pagar <svg class="icone-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></button>
             </div>
           </aside>
@@ -149,7 +167,7 @@
     <div class="faixa-confianca" aria-label="Garantias da plataforma">
       <div class="container faixa-confianca-itens">
         <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-2.8 8.1-7 10-4.2-1.9-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/></svg>Dados protegidos pela LGPD</span>
-        <span><img class="icone-pix" src="imagens/pix.png" alt="" width="230" height="219" loading="lazy" />Pagamento via Pix na plataforma</span>
+        <span><img class="icone-pix" src="imagens/pix.png" alt="" width="230" height="219" loading="lazy" />Pagamento por Pix ou cartão na plataforma</span>
         <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-6"/></svg>CREF conferido na verificação</span>
         <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Conexão criptografada</span>
       </div>
@@ -177,7 +195,7 @@
               </div>
             </div>
             <h3>Encontre perto de você</h3>
-            <p>Busque personal trainers próximos com preço, especialidades e avaliações reais de outros alunos.</p>
+            <p>Veja profissionais verificados, preços, especialidades e avaliações.</p>
           </article>
 
           <span class="step-arrow" aria-hidden="true"><svg class="icone-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
@@ -197,7 +215,7 @@
               </div>
             </div>
             <h3>Escolha o horário</h3>
-            <p>Veja a agenda em tempo real dos profissionais e escolha o melhor horário para o seu treino.</p>
+            <p>Consulte a agenda real e reserve o melhor horário.</p>
           </article>
 
           <span class="step-arrow" aria-hidden="true"><svg class="icone-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
@@ -216,7 +234,7 @@
               </div>
             </div>
             <h3>Pague e treine</h3>
-            <p>Pagamento 100% seguro via Pix. A aula só acontece após a confirmação do pagamento na plataforma.</p>
+            <p>Pague com Pix ou cartão. A reserva é confirmada após a aprovação do pagamento.</p>
           </article>
         </div>
       </div>
@@ -246,7 +264,7 @@
               <div><strong>Zero negociação por mensagem</strong><p>O aluno chega com horário escolhido e aula paga.</p></div>
             </li>
           </ul>
-          <a class="btn btn-primary btn-chevron" href="/login?aba=criar">Quero cadastrar meu perfil <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+          <a class="btn btn-primary btn-chevron" href="/login?aba=criar&tipo=personal">Quero cadastrar meu perfil <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
           <ul class="trainer-selos" aria-label="Garantias do cadastro">
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.6"/><path d="M8.2 10.5V8a3.8 3.8 0 017.6 0v2.5"/></svg>Cadastro gratuito</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v5.1c0 4.8-3.1 8-7.5 9.9-4.4-1.9-7.5-5.1-7.5-9.9V6l7.5-3z"/><path d="M8.6 12.2l2.4 2.4 4.4-5"/></svg>Verificação segura</li>
@@ -273,12 +291,12 @@
             <div class="dashboard-stats">
               <div>
                 <span class="stat-rotulo"><i class="stat-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.5" cy="8.5" r="3.4"/><path d="M3.6 19.4c.7-3 3-4.8 5.9-4.8s5.2 1.8 5.9 4.8M16.5 5.6a3.4 3.4 0 010 5.9M18.5 14.9c1.4.7 2.4 2 2.9 3.8"/></svg></i>Alunos esta semana</span>
-                <span class="stat-valor"><strong class="counter" data-target="12">0</strong><em class="delta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>20%</em></span>
+                <span class="stat-valor"><strong class="counter" data-target="12">12</strong><em class="delta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>20%</em></span>
                 <small>vs. semana anterior</small>
               </div>
               <div>
                 <span class="stat-rotulo"><i class="stat-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/></svg></i>Aulas agendadas</span>
-                <span class="stat-valor"><strong class="counter" data-target="18">0</strong><em class="delta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>15%</em></span>
+                <span class="stat-valor"><strong class="counter" data-target="18">18</strong><em class="delta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>15%</em></span>
                 <small>vs. semana anterior</small>
               </div>
               <div>
@@ -316,6 +334,7 @@
             <p><span>Sex, 30/05</span><b>R$ 110,00</b></p>
             <div class="payout-total"><span>Total</span><strong>R$ 350,00</strong></div>
           </div>
+          <p class="nota-ilustrativa">Dados ilustrativos do painel profissional.</p>
         </div>
       </div>
     </section>
@@ -333,19 +352,19 @@
             <div class="security-icon">
               <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7l22 9v15c0 14-9 23-22 29C19 54 10 45 10 31V16l22-9z"/><path d="M22 32l7 7 13-15"/></svg>
             </div>
-            <div><h3>Profissionais verificados</h3><p>Todo personal passa por análise documental antes de aparecer para os alunos.</p></div>
+            <div><h3>Profissionais verificados</h3><p>Documentos e registro profissional (CREF) analisados antes da publicação. O perfil só fica público após aprovação. <a class="link-inline" href="#duvidas">Entenda nossa verificação</a></p></div>
           </article>
           <article class="security-card reveal" data-delay="100">
             <div class="security-icon">
               <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="14" width="40" height="28" rx="5"/><path d="M6 24h40M13 34h10"/><rect x="40" y="38" width="18" height="15" rx="3.4"/><path d="M44 38v-4.4a5 5 0 0110 0V38M49 44v3.4"/></svg>
             </div>
-            <div><h3>Pagamento protegido</h3><p>O valor só é repassado ao profissional depois da aula. Falhou o pagamento, o horário libera de volta.</p></div>
+            <div><h3>Pagamento seguro</h3><p>A reserva é confirmada somente após a aprovação do pagamento. O repasse ao profissional acontece depois da aula, com prazo de proteção.</p></div>
           </article>
           <article class="security-card reveal" data-delay="200">
             <div class="security-icon">
               <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7l22 9v15c0 14-9 23-22 29C19 54 10 45 10 31V16l22-9z"/><circle cx="32" cy="28" r="4.6"/><path d="M32 32.6v8"/></svg>
             </div>
-            <div><h3>Seus dados, protegidos</h3><p>Dados pessoais tratados conforme a LGPD, com acesso restrito e criptografia.</p></div>
+            <div><h3>Dados protegidos</h3><p>Informações tratadas conforme a LGPD, com acesso controlado e criptografia.</p></div>
           </article>
         </div>
       
@@ -373,25 +392,25 @@
             <span class="mini-icon">
               <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M4 26c1-4.5 4.4-7 8-7s7 2.5 8 7"/><circle cx="22.5" cy="13" r="3.4"/><path d="M21 19.6c3 .3 5.6 2.4 6.6 5.9"/></svg>
             </span>
-            <div><h3>Perfis verificados</h3><p>Mais confiança para você treinar com tranquilidade.</p></div>
+            <div><h3>Encontre perto de você</h3><p>Profissionais na sua região, com distância e academias no mapa.</p></div>
           </article>
           <article class="mini-benefit reveal" data-delay="70">
             <span class="mini-icon">
               <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="7" width="22" height="20" rx="3"/><path d="M11 4v5M21 4v5M5 13h22"/><path class="cheio" d="M10 17h3v3h-3zM15 17h3v3h-3zM20 17h3v3h-3zM10 22h3v3h-3zM15 22h3v3h-3z"/></svg>
             </span>
-            <div><h3>Agenda em tempo real</h3><p>Horários livres de verdade, sem desencontro.</p></div>
+            <div><h3>Horários realmente disponíveis</h3><p>Agenda em tempo real, sem mensagens e desencontros.</p></div>
           </article>
           <article class="mini-benefit reveal" data-delay="140">
             <span class="mini-icon">
               <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="22" height="15" rx="3"/><path d="M3 13h22"/><path class="cheio" d="M19 18h9a1.6 1.6 0 011.6 1.6v7A1.6 1.6 0 0128 28.2h-9a1.6 1.6 0 01-1.6-1.6v-7A1.6 1.6 0 0119 18z"/><path d="M21 18v-2.4a2.5 2.5 0 015 0V18"/></svg>
             </span>
-            <div><h3>Pagamento seguro</h3><p>Transações protegidas dentro da plataforma.</p></div>
+            <div><h3>Reserve em poucos passos</h3><p>Busca, horário e pagamento no mesmo lugar.</p></div>
           </article>
           <article class="mini-benefit reveal" data-delay="210">
             <span class="mini-icon">
               <svg viewBox="0 0 32 32" aria-hidden="true"><path class="cheio" d="M16 4l3.7 7.6 8.3 1.2-6 5.9 1.4 8.3L16 23l-7.4 4 1.4-8.3-6-5.9 8.3-1.2L16 4z"/></svg>
             </span>
-            <div><h3>Avaliações reais</h3><p>Veja opiniões de alunos e faça a melhor escolha.</p></div>
+            <div><h3>Escolha com confiança</h3><p>Perfis verificados e avaliações reais de outros alunos.</p></div>
           </article>
         </div>
       </div>
@@ -419,7 +438,43 @@
           </details>
           <details>
             <summary>Como o personal recebe?</summary>
-            <p>O profissional acompanha os valores e repasses pela plataforma, conforme as regras definidas.</p>
+            <p>O valor da aula entra na carteira do profissional dentro da plataforma e é liberado após a aula, com prazo de proteção. O saque é semanal, para a conta ou chave Pix cadastrada.</p>
+          </details>
+          <details>
+            <summary>Como funciona o cancelamento?</summary>
+            <p>O aluno pode cancelar até 48 horas antes da aula, com reembolso do valor pago menos a taxa da transação. Com menos de 48 horas, o horário é do aluno e não há cancelamento.</p>
+          </details>
+          <details>
+            <summary>Posso remarcar uma aula?</summary>
+            <p>Ainda não existe remarcação direta: cancele dentro do prazo de 48 horas e reserve o novo horário. Fora do prazo, fale com o personal pela caixa de dúvidas.</p>
+          </details>
+          <details>
+            <summary>O pagamento pode ser reembolsado?</summary>
+            <p>Sim, em dois casos: cancelamento pelo aluno até 48 horas antes (valor menos a taxa da transação) e falta do profissional confirmada pela plataforma (reembolso de 100%).</p>
+          </details>
+          <details>
+            <summary>O personal precisa ter CREF?</summary>
+            <p>Sim. O registro no CREF é obrigatório e conferido na verificação antes de o perfil ficar público.</p>
+          </details>
+          <details>
+            <summary>Quais documentos são solicitados ao personal?</summary>
+            <p>Documento oficial com foto e comprovação do registro CREF. A análise é feita pela equipe da plataforma e o perfil só aparece para alunos depois da aprovação.</p>
+          </details>
+          <details>
+            <summary>O personal escolhe o próprio preço?</summary>
+            <p>Sim. Cada profissional define o valor da própria aula; a plataforma mostra uma faixa sugerida da região como referência.</p>
+          </details>
+          <details>
+            <summary>O aluno consegue avaliar depois da aula?</summary>
+            <p>Sim. Após a aula concluída, o aluno pode avaliar o profissional, e as avaliações aparecem no perfil público.</p>
+          </details>
+          <details>
+            <summary>Como minha localização é utilizada?</summary>
+            <p>Só para mostrar profissionais e academias próximas na busca. O endereço exato de ninguém é exposto: alunos veem apenas as academias onde o personal atende.</p>
+          </details>
+          <details>
+            <summary>Como entro em contato com o suporte?</summary>
+            <p>Dentro da plataforma, pela área de dúvidas da sua conta. Problemas com aula, pagamento ou perfil são tratados por gente de verdade.</p>
           </details>
         </div>
       </div>
@@ -434,8 +489,8 @@
             <h2>Pronto para treinar melhor?<br><strong>Encontre seu personal agora</strong></h2>
             <p>Mais praticidade, segurança e resultados para você.</p>
             <div class="cta-actions">
-              <a class="btn btn-primary magnetic" href="/login">Quero contratar um personal <svg class="icone-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>
-              <a class="btn btn-outline magnetic" href="/login">Sou personal trainer <svg class="icone-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>
+              <a class="btn btn-primary btn-brilho magnetic" href="/login?aba=criar&tipo=aluno">Quero contratar um personal <svg class="icone-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>
+              <a class="btn btn-outline magnetic" href="/login?aba=criar&tipo=personal">Sou personal trainer <svg class="icone-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>
             </div>
           </div>
           <img class="athlete athlete-right" src="imagens/personagem-homem.webp" alt="" aria-hidden="true" loading="lazy" width="520" height="1033" />
@@ -448,7 +503,7 @@
     <div class="footer-painel">
     <div class="container footer-grid">
       <div>
-        <a class="brand footer-brand" href="#topo"><img class="brand-logo" src="imagens/logo.png" alt="" width="168" height="193" /><span>Personal</span><strong>Aqui</strong></a>
+        <a class="brand footer-brand" href="#topo"><img class="brand-logo" src="imagens/logo.png" alt="" width="656" height="862" /><span class="brand-nome">Personal<strong>Aqui</strong></span></a>
         <p>Conectando alunos e personal trainers com segurança e praticidade.</p>
         <ul class="footer-selos" aria-label="Diferenciais da plataforma">
           <li><span class="selo-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v5.1c0 4.8-3.1 8-7.5 9.9-4.4-1.9-7.5-5.1-7.5-9.9V6l7.5-3z"/><rect x="9.4" y="10.4" width="5.2" height="4.6" rx="1.1"/><path d="M10.5 10.4V9.3a1.5 1.5 0 013 0v1.1"/></svg></span><span>Seguro<br>e confiável</span></li>
@@ -468,6 +523,13 @@
         <a href="termos.html">Termos de uso <svg class="link-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
         <a href="privacidade.html">Política de privacidade <svg class="link-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
         <a href="privacidade.html#lgpd">LGPD <svg class="link-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+        <a href="termos.html#cancelamento">Política de cancelamento <svg class="link-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+        <a href="termos.html#pagamentos">Política de pagamentos <svg class="link-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="footer-links">
+        <h3>Suporte</h3>
+        <a href="#duvidas">Perguntas frequentes <svg class="link-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+        <a href="/login">Central de dúvidas na plataforma <svg class="link-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
       </div>
       <div>
         <h3>Siga a gente</h3>
@@ -488,6 +550,29 @@
     <div class="footer-bottom">© <span id="current-year"></span> <strong>PersonalAqui</strong>. Todos os direitos reservados.</div>
   </footer>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "PersonalAqui",
+        "url": "https://albertogrb.github.io/meupersonal-landing/",
+        "logo": "https://albertogrb.github.io/meupersonal-landing/imagens/logo.png",
+        "description": "Plataforma que conecta alunos a personal trainers verificados, com agenda em tempo real e pagamento seguro."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "O personal precisa ser verificado?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O perfil só fica público após a validação da documentação obrigatória, incluindo o registro CREF." } },
+          { "@type": "Question", "name": "Quando a reserva é confirmada?", "acceptedAnswer": { "@type": "Answer", "text": "A reserva é confirmada após a aprovação do pagamento e o horário fica bloqueado automaticamente." } },
+          { "@type": "Question", "name": "Como funciona o cancelamento?", "acceptedAnswer": { "@type": "Answer", "text": "O aluno pode cancelar até 48 horas antes da aula, com reembolso do valor pago menos a taxa da transação." } },
+          { "@type": "Question", "name": "Quais formas de pagamento são aceitas?", "acceptedAnswer": { "@type": "Answer", "text": "Pix e cartão de crédito ou débito à vista, sempre dentro da plataforma." } }
+        ]
+      }
+    ]
+  }
+  </script>
   <script src="fundo-shader.js" defer></script>
   <script src="interacoes.js"></script>
 </body>

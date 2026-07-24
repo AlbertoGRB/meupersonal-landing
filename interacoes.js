@@ -72,26 +72,53 @@
     });
   });
 
-  const counterObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting || entry.target.dataset.done) return;
-      entry.target.dataset.done = 'true';
-      const target = Number(entry.target.dataset.target || 0);
-      const duration = reduceMotion ? 1 : 900;
-      const start = performance.now();
+  // contadores: o HTML já traz o valor final (nunca fica em 0); a contagem é só enfeite
+  if (!reduceMotion) {
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting || entry.target.dataset.done) return;
+        entry.target.dataset.done = 'true';
+        const target = Number(entry.target.dataset.target || 0);
+        const duration = 900;
+        const start = performance.now();
 
-      const tick = now => {
-        const progressValue = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progressValue, 3);
-        entry.target.textContent = Math.floor(target * eased);
-        if (progressValue < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      counterObserver.unobserve(entry.target);
+        const tick = now => {
+          const progressValue = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progressValue, 3);
+          entry.target.textContent = Math.floor(target * eased);
+          if (progressValue < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(entry.target);
+      });
+    }, { threshold: .6 });
+
+    document.querySelectorAll('.counter').forEach(counter => counterObserver.observe(counter));
+  }
+
+  // "Cadastrar grátis": escolher aluno ou personal antes de ir para o cadastro
+  const abrirCadastro = document.getElementById('abrir-cadastro-escolha');
+  const menuCadastro = document.getElementById('cadastro-menu');
+  if (abrirCadastro && menuCadastro) {
+    abrirCadastro.addEventListener('click', () => {
+      const aberto = !menuCadastro.hidden;
+      menuCadastro.hidden = aberto;
+      abrirCadastro.setAttribute('aria-expanded', String(!aberto));
     });
-  }, { threshold: .6 });
-
-  document.querySelectorAll('.counter').forEach(counter => counterObserver.observe(counter));
+    document.addEventListener('click', event => {
+      if (!menuCadastro.hidden && !event.target.closest('.cadastro-escolha')) {
+        menuCadastro.hidden = true;
+        abrirCadastro.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !menuCadastro.hidden) {
+        menuCadastro.hidden = true;
+        abrirCadastro.setAttribute('aria-expanded', 'false');
+        abrirCadastro.focus();
+      }
+    });
+  }
 
   document.querySelectorAll('.magnetic').forEach(button => {
     if (reduceMotion) return;
@@ -115,7 +142,7 @@
   });
 })();
 
-/* Abertura em dois atos: frase 1 → pausa 2s → morph gooey → frase 2 → revela o hero.
+/* Abertura curta (até 3s): frase 1 (~1,2s) → morph → frase 2 (~1s) → fade para a landing.
    Pula automaticamente para quem prefere menos movimento ou já viu nesta sessão. */
 (() => {
   const abertura = document.getElementById('intro-abertura');
@@ -168,16 +195,16 @@
   document.body.classList.add('intro-ativa');
   botaoPular.addEventListener('click', () => encerrar());
 
-  // ato 1: frase 1 entra suave, segura 2s, e faz o morph gooey para a frase 2
+  // cena 1: frase 1 entra suave e segura ~1,2s; morph rápido para a cena 2
   frase1.style.opacity = '0';
   requestAnimationFrame(() => {
-    frase1.style.transition = 'opacity .6s ease';
+    frase1.style.transition = 'opacity .35s ease';
     frase1.style.opacity = '1';
   });
 
-  const DURACAO_MORPH = 1000;
-  const PAUSA_FRASE_1 = 2000;
-  const PAUSA_FRASE_2 = 1900;
+  const DURACAO_MORPH = 380;
+  const PAUSA_FRASE_1 = 1200;
+  const PAUSA_FRASE_2 = 1000;
 
   setTimeout(() => {
     frase1.style.transition = '';
@@ -198,12 +225,12 @@
         frase1.style.opacity = '0';
         frase2.style.filter = '';
         frase2.style.opacity = '1';
-        // ato 2: segura a frase final e revela o hero
-        setTimeout(() => encerrar(false, true), PAUSA_FRASE_2);
+        // cena 2: segura a frase final ~1s e sai em fade suave para a landing
+        setTimeout(() => encerrar(false, false), PAUSA_FRASE_2);
       }
     };
     requestAnimationFrame(morph);
-  }, PAUSA_FRASE_1 + 600);
+  }, PAUSA_FRASE_1);
 })();
 
 // Dúvidas: só uma resposta aberta por vez
