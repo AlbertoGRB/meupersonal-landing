@@ -120,6 +120,31 @@
     });
   }
 
+  // menu de navegação no celular (hambúrguer): a .main-nav some <=960px e este assume
+  const abrirMenuCelular = document.getElementById('abrir-menu-celular');
+  const menuCelular = document.getElementById('menu-celular');
+  if (abrirMenuCelular && menuCelular) {
+    const definirMenu = aberto => {
+      menuCelular.hidden = !aberto;
+      abrirMenuCelular.setAttribute('aria-expanded', String(aberto));
+      abrirMenuCelular.setAttribute('aria-label', aberto ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+      header.classList.toggle('menu-aberto', aberto);
+    };
+    abrirMenuCelular.addEventListener('click', () => definirMenu(menuCelular.hidden));
+    menuCelular.addEventListener('click', event => {
+      if (event.target.closest('a')) definirMenu(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !menuCelular.hidden) {
+        definirMenu(false);
+        abrirMenuCelular.focus();
+      }
+    });
+    document.addEventListener('click', event => {
+      if (!menuCelular.hidden && !event.target.closest('.site-header')) definirMenu(false);
+    });
+  }
+
   document.querySelectorAll('.magnetic').forEach(button => {
     if (reduceMotion) return;
     button.addEventListener('mousemove', event => {

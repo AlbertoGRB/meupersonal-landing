@@ -301,6 +301,12 @@ void main() {
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // celular e economia de dados: o render contínuo do WebGL drena bateria e trava
+  // aparelhos fracos; nesses casos nem inicializa e fica o fundo estático do body
+  const telaPequena = window.matchMedia('(max-width: 768px)').matches;
+  const economiaDados = Boolean(navigator.connection && navigator.connection.saveData);
+  if (telaPequena || economiaDados) return;
+
   const canvas = document.createElement('canvas');
   canvas.id = 'fundo-shader';
   canvas.setAttribute('aria-hidden', 'true');
