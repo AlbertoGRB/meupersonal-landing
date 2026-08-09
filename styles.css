@@ -435,7 +435,8 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 .btn-svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* faixa de confiança institucional */
-.faixa-confianca { border-block: 1px solid var(--line-neutra, rgba(255,255,255,.08)); background: rgba(10, 21, 16, .5); }
+/* continua o tom do hero (sem linha dura entre o video e a faixa) */
+.faixa-confianca { border: 0; border-bottom: 1px solid rgba(185,255,57,.1); background: linear-gradient(180deg, #06100c, #081410); }
 .faixa-confianca-itens { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 38px; padding: 18px 24px; }
 .faixa-confianca-itens span { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: .88rem; font-weight: 600; }
 .faixa-confianca-itens svg { width: 19px; height: 19px; fill: none; stroke: var(--lime); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -707,7 +708,7 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 .hero-veu-video { position: absolute; inset: 0;
   background:
     linear-gradient(90deg, rgba(5,11,8,.94) 0%, rgba(5,11,8,.82) 38%, rgba(5,11,8,.45) 68%, rgba(5,11,8,.55) 100%),
-    linear-gradient(0deg, rgba(5,11,8,.92) 0%, transparent 32%);
+    linear-gradient(0deg, #06100c 0%, rgba(6,16,12,.62) 14%, transparent 38%);
 }
 .hero-com-video .hero-grid { position: relative; z-index: 1; grid-template-columns: minmax(0, 1fr); }
 .hero-com-video .hero-copy { max-width: 660px; }
