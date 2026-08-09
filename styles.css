@@ -39,6 +39,12 @@ img, svg { display: block; max-width: 100%; }
 }
 /* sem backdrop-filter aqui: desfoque sobre o video do hero pisca no hover (bug do Chromium) */
 .site-header.is-scrolled { background: rgba(4, 10, 7, .96); border-color: rgba(255,255,255,.06); box-shadow: 0 10px 40px rgba(0,0,0,.3); }
+/* camada propria de composicao: hover/clique na barra nao repinta junto com o video */
+.site-header { transform: translateZ(0); }
+.cadastro-menu { transform: translateZ(0); }
+/* na barra, botao sem sombra-glow nem elevacao (menos repintura sobre o video) */
+.header-actions .btn { box-shadow: none; }
+.header-actions .btn:hover { transform: none; box-shadow: 0 0 0 1.5px rgba(185,255,57,.55); }
 .header-inner { height: 100%; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
 .brand { display: inline-flex; align-items: baseline; font-weight: 780; letter-spacing: -.04em; font-size: 1.35rem; white-space: nowrap; }
 .brand strong { color: var(--lime); }
