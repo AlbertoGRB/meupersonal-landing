@@ -440,9 +440,29 @@
       <div class="container faq-grid">
         <div class="faq-intro reveal">
           <span class="section-kicker">Perguntas frequentes</span>
-          <h2>Dúvidas rápidas antes de começar</h2>
-          <p>O essencial sobre cadastro, agenda e pagamento.</p>
+          <h2>Pergunte, a gente <span>responde na hora</span></h2>
+          <p>Converse com o assistente: toque numa pergunta pronta ou escreva a sua.</p>
         </div>
+
+        <div class="faq-chat reveal" data-delay="100" id="faq-chat" hidden>
+          <div class="chat-topo">
+            <span class="chat-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-1 0-2-.1-2.9-.4L4 19.6l1.2-3.3c-1.1-1.3-1.7-2.9-1.7-4.7 0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2z"/><path d="M8.5 11.6h7"/></svg></span>
+            <div class="chat-quem">
+              <strong>Assistente PersonalAqui</strong>
+              <span><i class="chat-ponto" aria-hidden="true"></i> Responde na hora</span>
+            </div>
+          </div>
+          <div class="chat-janela" aria-live="polite" aria-label="Conversa com o assistente"></div>
+          <div class="chat-chips" aria-label="Perguntas sugeridas"></div>
+          <form class="chat-form">
+            <label class="sr-so-leitor" for="chat-campo">Escreva sua pergunta</label>
+            <input id="chat-campo" type="text" placeholder="Escreva sua pergunta..." autocomplete="off" maxlength="200" />
+            <button class="btn btn-primary chat-enviar" type="submit" aria-label="Enviar pergunta">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+        </div>
+
         <div class="faq-list reveal" data-delay="100">
           <details>
             <summary>O personal precisa ser verificado?</summary>

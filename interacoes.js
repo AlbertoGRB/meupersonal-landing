@@ -267,3 +267,133 @@ document.querySelectorAll('.faq-list details').forEach((item) => {
     });
   });
 });
+
+/* FAQ em formato de chat: responde com as perguntas e respostas da propria pagina.
+   Nada sai do navegador (sem servidor, sem custo, LGPD tranquila). Sem JS, a lista
+   <details> continua funcionando como sempre. */
+(() => {
+  const secao = document.getElementById('duvidas');
+  const chat = document.getElementById('faq-chat');
+  const lista = secao ? secao.querySelector('.faq-list') : null;
+  if (!secao || !chat || !lista) return;
+
+  const base = [...lista.querySelectorAll('details')].map((d) => ({
+    pergunta: d.querySelector('summary').textContent.trim(),
+    resposta: d.querySelector('p').textContent.trim()
+  }));
+  if (!base.length) return;
+
+  chat.hidden = false;
+  secao.classList.add('chat-ativo');
+
+  const janela = chat.querySelector('.chat-janela');
+  const chipsBox = chat.querySelector('.chat-chips');
+  const form = chat.querySelector('.chat-form');
+  const campo = chat.querySelector('#chat-campo');
+  const reduzMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const normalizar = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s]/g, ' ');
+  const GENERICAS = new Set(['o','a','os','as','um','uma','de','do','da','dos','das','e','em','no','na','nos','nas','que','como','para','pra','por','com','se','eu','meu','minha','ser','tem','ter','sao','posso','pode','quais','qual','quando','onde','funciona','personal','aula','aulas','plataforma','sobre','pelo','pela']);
+  const SINONIMOS = {
+    pagar: 'pagamento', pago: 'pagamento', pagam: 'pagamento', pix: 'pagamento', cartao: 'pagamento', dinheiro: 'pagamento',
+    estorno: 'reembolsado', devolucao: 'reembolsado', reembolso: 'reembolsado', devolvem: 'reembolsado',
+    cancelar: 'cancelamento', desmarcar: 'cancelamento', desistir: 'cancelamento',
+    mudar: 'remarcar', trocar: 'remarcar', adiar: 'remarcar',
+    endereco: 'localizacao', perto: 'perto', proximo: 'perto', proxima: 'perto', gps: 'localizacao', regiao: 'perto',
+    documento: 'documentos', identidade: 'documentos',
+    registro: 'cref', formado: 'cref', formacao: 'cref',
+    confiavel: 'verificado', confianca: 'verificado', seguro: 'verificado', seguranca: 'verificado', golpe: 'verificado',
+    recebe: 'recebe', recebem: 'recebe', saque: 'recebe', ganha: 'recebe', repasse: 'recebe',
+    preco: 'preco', valor: 'preco', custa: 'preco', caro: 'preco', barato: 'preco',
+    avaliar: 'avaliar', avaliacao: 'avaliar', nota: 'avaliar', estrelas: 'avaliar',
+    ajuda: 'suporte', contato: 'suporte', falar: 'suporte', atendimento: 'suporte', problema: 'suporte',
+    confirmada: 'confirmada', reserva: 'confirmada', reservar: 'confirmada', agendar: 'confirmada', horario: 'confirmada'
+  };
+  const tokens = (t) => normalizar(t).split(/\s+/)
+    .filter((p) => p.length > 2 && !GENERICAS.has(p))
+    .map((p) => SINONIMOS[p] || p);
+
+  const indice = base.map((item) => ({
+    ...item,
+    doPergunta: new Set(tokens(item.pergunta)),
+    doTexto: new Set([...tokens(item.pergunta), ...tokens(item.resposta)])
+  }));
+
+  const jaPerguntadas = new Set();
+
+  const bolha = (texto, quem) => {
+    const b = document.createElement('div');
+    b.className = 'balao ' + (quem === 'eu' ? 'balao-eu' : 'balao-bot');
+    b.textContent = texto;
+    janela.appendChild(b);
+    janela.scrollTop = janela.scrollHeight;
+    return b;
+  };
+
+  const digitando = () => {
+    const b = document.createElement('div');
+    b.className = 'balao balao-bot balao-digitando';
+    b.innerHTML = '<i></i><i></i><i></i>';
+    janela.appendChild(b);
+    janela.scrollTop = janela.scrollHeight;
+    return b;
+  };
+
+  const montarChips = () => {
+    chipsBox.innerHTML = '';
+    base.filter((i) => !jaPerguntadas.has(i.pergunta)).slice(0, 4).forEach((item) => {
+      const botao = document.createElement('button');
+      botao.type = 'button';
+      botao.textContent = item.pergunta;
+      botao.addEventListener('click', () => perguntar(item.pergunta, item));
+      chipsBox.appendChild(botao);
+    });
+  };
+
+  const melhorResposta = (texto) => {
+    const meus = tokens(texto);
+    if (!meus.length) return null;
+    let melhor = null;
+    let nota = 0;
+    for (const item of indice) {
+      let pontos = 0;
+      for (const t of meus) {
+        if (item.doPergunta.has(t)) pontos += 2;
+        else if (item.doTexto.has(t)) pontos += 1;
+      }
+      if (pontos > nota) { nota = pontos; melhor = item; }
+    }
+    return nota >= 2 ? melhor : null;
+  };
+
+  const responder = (item) => {
+    const espera = reduzMovimento ? 0 : 550 + Math.random() * 450;
+    const dots = digitando();
+    window.setTimeout(() => {
+      dots.remove();
+      if (item) {
+        jaPerguntadas.add(item.pergunta);
+        bolha(item.resposta, 'bot');
+      } else {
+        bolha('Essa eu ainda não sei responder. Veja se uma das perguntas abaixo ajuda, ou fale com a gente pela área de dúvidas depois de entrar na plataforma.', 'bot');
+      }
+      montarChips();
+    }, espera);
+  };
+
+  const perguntar = (texto, itemDireto) => {
+    bolha(texto, 'eu');
+    responder(itemDireto || melhorResposta(texto));
+  };
+
+  form.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+    const texto = campo.value.trim();
+    if (!texto) return;
+    campo.value = '';
+    perguntar(texto);
+  });
+
+  bolha('Oi! Sou o assistente do PersonalAqui. Pergunte o que quiser sobre cadastro, agenda, pagamento ou segurança. Pode tocar numa pergunta pronta ou escrever a sua.', 'bot');
+  montarChips();
+})();
