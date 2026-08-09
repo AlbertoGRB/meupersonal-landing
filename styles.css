@@ -37,7 +37,8 @@ img, svg { display: block; max-width: 100%; }
   background: transparent;
   transition: background .3s ease, box-shadow .3s ease, border-color .3s ease, backdrop-filter .3s ease;
 }
-.site-header.is-scrolled { background: rgba(4, 10, 7, .85); backdrop-filter: blur(18px); border-color: rgba(255,255,255,.06); box-shadow: 0 10px 40px rgba(0,0,0,.3); }
+/* sem backdrop-filter aqui: desfoque sobre o video do hero pisca no hover (bug do Chromium) */
+.site-header.is-scrolled { background: rgba(4, 10, 7, .96); border-color: rgba(255,255,255,.06); box-shadow: 0 10px 40px rgba(0,0,0,.3); }
 .header-inner { height: 100%; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
 .brand { display: inline-flex; align-items: baseline; font-weight: 780; letter-spacing: -.04em; font-size: 1.35rem; white-space: nowrap; }
 .brand strong { color: var(--lime); }
@@ -654,7 +655,7 @@ body.chegando .site-footer { animation: aterrissagem .85s cubic-bezier(.16, .8, 
 .menu-celular a:hover { background: rgba(185,255,57,.09); color: var(--lime); }
 .menu-celular-entrar { border-top: 1px solid rgba(255,255,255,.08); border-radius: 0 0 12px 12px; margin-top: 6px; color: var(--lime); }
 /* menu aberto: o header ganha fundo sólido mesmo sem rolagem */
-.site-header.menu-aberto { background: rgba(4, 10, 7, .97); backdrop-filter: blur(18px); border-color: rgba(255,255,255,.06); }
+.site-header.menu-aberto { background: rgba(4, 10, 7, .97); border-color: rgba(255,255,255,.06); }
 
 /* contraste no celular: overlay horizontal deixava o texto sobre a parte clara da foto */
 @media (max-width: 960px) {
