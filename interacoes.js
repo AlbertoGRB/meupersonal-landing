@@ -397,3 +397,22 @@ document.querySelectorAll('.faq-list details').forEach((item) => {
   bolha('Oi! Sou o assistente do PersonalAqui. Pergunte o que quiser sobre cadastro, agenda, pagamento ou segurança. Pode tocar numa pergunta pronta ou escrever a sua.', 'bot');
   montarChips();
 })();
+
+/* Video do hero: pausa fora da tela (bateria/dados) e respeita quem prefere menos movimento */
+(() => {
+  const video = document.getElementById('hero-video');
+  if (!video) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.removeAttribute('autoplay');
+    video.pause();
+    return; // fica a capa estatica do mapa
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entradas) => {
+      for (const e of entradas) {
+        if (e.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      }
+    }, { threshold: .1 }).observe(video);
+  }
+})();

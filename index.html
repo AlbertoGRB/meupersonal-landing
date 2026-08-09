@@ -86,7 +86,14 @@
   </header>
 
   <main>
-    <section class="hero section-shell" aria-labelledby="hero-title">
+    <section class="hero section-shell hero-com-video" aria-labelledby="hero-title">
+      <div class="hero-fundo-video" aria-hidden="true">
+        <video id="hero-video" muted loop playsinline autoplay preload="metadata" poster="imagens/hero-motion-capa.webp">
+          <source src="imagens/hero-motion.webm" type="video/webm" />
+          <source src="imagens/hero-motion.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-veu-video"></div>
+      </div>
 
       <div class="container hero-grid">
         <div class="hero-copy reveal">
@@ -128,56 +135,6 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal" data-delay="120">
-          <div class="phone-wrap" id="phone-tilt">
-            <svg class="anel anel-tras" viewBox="0 0 420 150" aria-hidden="true">
-              <defs>
-                <linearGradient id="anel-grad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stop-color="#b9ff39" stop-opacity="0"/>
-                  <stop offset=".5" stop-color="#b9ff39" stop-opacity="1"/>
-                  <stop offset="1" stop-color="#b9ff39" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M12 82 C 60 18, 360 18, 408 82" fill="none" stroke="url(#anel-grad)" stroke-width="3.4" stroke-linecap="round"/>
-            </svg>
-            <svg class="anel anel-frente" viewBox="0 0 420 150" aria-hidden="true">
-              <path d="M12 82 C 60 146, 360 146, 408 82" fill="none" stroke="url(#anel-grad)" stroke-width="4" stroke-linecap="round"/>
-            </svg>
-            <img class="celular-app" src="imagens/celular-app.webp" alt="Aplicativo PersonalAqui mostrando personais próximos no mapa" width="745" height="1344" fetchpriority="high" />
-            <div class="mapa-vivo" aria-hidden="true">
-              <span class="pulso-voce"></span>
-              <span class="pulso-pino pino-1"></span>
-              <span class="pulso-pino pino-2"></span>
-              <span class="pulso-pino pino-3"></span>
-              <span class="cursor-mapa"></span>
-            </div>
-          </div>
-          <aside class="booking-panel floating-card">
-            <div class="panel-heading">
-              <span><svg class="icone-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span>
-              <strong>Escolha o horário</strong>
-              <span><svg class="icone-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-            </div>
-            <div class="week-row">
-              <button><span>Seg</span><strong>26</strong></button>
-              <button><span>Ter</span><strong>27</strong></button>
-              <button class="selected"><span>Qua</span><strong>28</strong></button>
-              <button><span>Qui</span><strong>29</strong></button>
-              <button><span>Sex</span><strong>30</strong></button>
-              <button><span>Sáb</span><strong>31</strong></button>
-            </div>
-            <span class="panel-label">Horários disponíveis</span>
-            <div class="time-grid">
-              <button>06:00</button><button>07:00</button>
-              <button>08:00</button><button class="selected">09:00</button>
-              <button>10:00</button><button>11:00</button>
-            </div>
-            <div class="payment-box">
-              <div><small>Pagamento seguro</small><strong>R$ 120,00</strong><span class="via-pix"><img class="icone-pix" src="imagens/pix.png" alt="" width="230" height="219" loading="lazy" /> Pix ou cartão, na plataforma</span></div>
-              <button class="btn btn-primary btn-block">Confirmar e pagar <svg class="icone-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></button>
-            </div>
-          </aside>
-        </div>
       </div>
     </section>
 
